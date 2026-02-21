@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+   <title>AcquaSafe - Painel de Controle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    
+    <header class="navbar">
+        <div class="logo">AcquaSafe</div>
+        <nav>
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Histórico</a>
+        </nav>
+    </header>
+
+    <main class="dashboard">
+        <section class="header-main">
+            <div>
+                <h1>Painel de Controle</h1>
+                <p>Monitoramento técnico e parâmetros de referência.</p>
+            </div>
+            <div class="stats-badge">
+                <span>TOTAL DE RELATOS: <strong>0</strong></span>
+                <span class="status-active">✔ Sistema Ativo</span>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <div class="chart-container card">
+                <h3>Parâmetros de Qualidade</h3>
+                <canvas id="qualityChart"></canvas>
+            </div>
+
+            <aside class="sidebar-cards">
+                <div class="info-card">
+                    <img src="https://via.placeholder.com/150x80?text=Patogenos" alt="Patógenos">
+                    <div class="card-content">
+                        <h4>Patógenos</h4>
+                        <p>Catálogo Técnico</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <img src="https://via.placeholder.com/150x80?text=Solucoes" alt="Soluções">
+                    <div class="card-content">
+                        <h4>Soluções</h4>
+                        <p>Guia de Manejo</p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <img src="https://via.placeholder.com/150x80?text=Risco" alt="Periculosidade">
+                    <div class="card-content">
+                        <h4>Periculosidade</h4>
+                        <p>0 Alertas</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
