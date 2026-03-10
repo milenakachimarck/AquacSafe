@@ -1,111 +1,38 @@
-:root {
-    --blue-main: #2563eb;
-    --bg-gray: #f8fafc;
-    --text-dark: #1e293b;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-gray);
-    margin: 0;
-    color: var(--text-dark);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 5%;
+/* Container de largura total para o alerta de periculosidade */
+.danger-zone {
+    grid-column: 1 / -1; /* Faz o card ocupar as duas colunas do grid */
+    margin-top: 20px;
     background: white;
-    border-bottom: 1px solid #e2e8f0;
-}
-
-.dashboard {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 20px;
-}
-
-.header-main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.status-active {
-    background: #dcfce7;
-    color: #166534;
-    padding: 8px 15px;
     border-radius: 20px;
-    font-size: 0.8rem;
-    margin-left: 15px;
-}
-
-.content-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
+    overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-
-}/* Layout do container lateral */
-.sidebar-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Espaço entre os blocos */
 }
 
-.info-card {
-    background: white;
-    border-radius: 15px; /* Bordas arredondadas como na imagem */
-    overflow: hidden;    /* Garante que a imagem não saia das bordas arredondadas */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s;
-}
-
-.info-card:hover { transform: translateY(-5px); }
-
-.info-card img {
+.danger-banner {
     width: 100%;
-    height: 120px;       /* Altura fixa para manter o padrão */
-    object-fit: cover;   /* Faz a imagem preencher o espaço sem esticar */
-    display: block;
+    height: 180px; /* Ajuste a altura conforme necessário */
+    overflow: hidden;
 }
 
-.card-content {
-    padding: 15px;       /* Espaço interno para o texto não encostar nas bordas */
+.danger-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção da imagem de aviso */
+    object-position: center;
 }
 
-.card-content h4 {
+.danger-content {
+    padding: 20px 25px;
+}
+
+.danger-content h4 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #1e293b;
 }
 
-.card-content p {
+.danger-content p {
     margin: 5px 0 0;
-    font-size: 0.9rem;
-    color: #64748b;
-}
-.card-image-container {
-    width: 100%;
-    height: 150px; /* Ajuste para a altura desejada */
-    overflow: hidden;
-    border-radius: 8px 8px 0 0; /* Arredonda só o topo, se desejar */
-}
-
-/* A imagem se adapta ao container sem distorcer */
-.card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantém a proporção e corta o excesso */
-    object-position: center; /* Centraliza o foco da foto */
-    display: block;
+    color: #ef4444; /* Vermelho para indicar alerta */
+    font-weight: 500;
 }
