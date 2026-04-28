@@ -37,11 +37,16 @@ if (window.elementSdk) {
         onConfigChange: async (config) => applyConfig(config),
         mapToCapabilities: (config) => ({
             recolorables: [
-                { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-                { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-                { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-                { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
-                { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+                { get: () => config.background_color || defaultConfig.background_color, 
+                  set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+                { get: () => config.surface_color || defaultConfig.surface_color, 
+                  set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+                { get: () => config.text_color || defaultConfig.text_color, 
+                  set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+                { get: () => config.primary_action_color || defaultConfig.primary_action_color, 
+                  set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+                { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, 
+                  set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
             ],
             borderables: [],
             fontEditable: {
@@ -60,7 +65,7 @@ if (window.elementSdk) {
     });
 }
 
-// Gráfico
+// Chart.js - Gráfico de Parâmetros
 const ctx = document.getElementById('qualityChart').getContext('2d');
 
 new Chart(ctx, {
@@ -88,21 +93,21 @@ new Chart(ctx, {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: { 
-                labels: { 
-                    color: '#94a3b8', 
-                    font: { family: 'DM Sans' } 
-                } 
+            legend: {
+                labels: {
+                    color: '#94a3b8',
+                    font: { family: 'DM Sans' }
+                }
             }
         },
         scales: {
-            x: { 
-                ticks: { color: '#64748b' }, 
-                grid: { color: 'rgba(255,255,255,0.04)' } 
+            x: {
+                ticks: { color: '#64748b' },
+                grid: { color: 'rgba(255,255,255,0.04)' }
             },
-            y: { 
-                ticks: { color: '#64748b' }, 
-                grid: { color: 'rgba(255,255,255,0.04)' } 
+            y: {
+                ticks: { color: '#64748b' },
+                grid: { color: 'rgba(255,255,255,0.04)' }
             }
         }
     }
