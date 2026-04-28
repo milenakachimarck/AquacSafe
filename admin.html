@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroÁgua - Históricos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo.png" alt="Logo AgroÁgua">
+        <div>
+          <h2>AgroÁgua</h2>
+          <p>Cuidamos da água,<br>cultivamos o futuro.</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#" class="menu-item"><span>🏠</span> Resumo</a>
+        <a href="#" class="menu-item"><span>💧</span> Irrigação</a>
+        <a href="#" class="menu-item"><span>📊</span> Monitoramento</a>
+        <a href="#" class="menu-item active"><span>⏱️</span> Históricos</a>
+        <a href="#" class="menu-item"><span>📱</span> Dispositivos</a>
+        <a href="#" class="menu-item"><span>⚠️</span> Alertas</a>
+        <a href="#" class="menu-item"><span>📄</span> Relatórios</a>
+        <a href="#" class="menu-item"><span>⚙️</span> Configurações</a>
+      </nav>
+
+      <div class="farm-info">
+        <div class="farm">
+          <img src="farm-icon.png" alt="Fazenda">
+          <div>
+            <strong>Fazenda Boa Vista</strong>
+            <span>João Agricultor</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Históricos</h1>
+        <p>Acompanhe o histórico de irrigação, consumo de água e condições do solo.</p>
+        
+        <div class="header-controls">
+          <div class="date-range">
+            20/05/2024 - 26/05/2024
+          </div>
+          <button class="btn-filter">Filtros</button>
+        </div>
+      </header>
+
+      <!-- Cards de Resumo -->
+      <div class="cards">
+        <div class="card">
+          <div class="icon blue">💧</div>
+          <div>
+            <h3>ÁGUA APLICADA</h3>
+            <h2>128.450 L</h2>
+            <span class="change down">↓ 8% vs período anterior</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="icon green">🌱</div>
+          <div>
+            <h3>IRRIGAÇÕES REALIZADAS</h3>
+            <h2>14</h2>
+            <span class="change up">↑ 16% vs período anterior</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="icon purple">⏰</div>
+          <div>
+            <h3>TEMPO TOTAL DE IRRIGAÇÃO</h3>
+            <h2>18h 45min</h2>
+            <span class="change up">↑ 12% vs período anterior</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="icon orange">📊</div>
+          <div>
+            <h3>MÉDIA DE UMIDADE DO SOLO</h3>
+            <h2>24%</h2>
+            <span class="change down">↓ 6% vs período anterior</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfico -->
+      <section class="chart-section">
+        <div class="chart-header">
+          <h3>Evolução da irrigação</h3>
+          <select>
+            <option>Diário</option>
+          </select>
+        </div>
+        <div class="chart-placeholder">
+          <!-- Aqui você pode integrar Chart.js ou outra biblioteca -->
+          <img src="grafico.png" alt="Gráfico de evolução" style="width:100%; height:300px; object-fit:contain;">
+        </div>
+      </section>
+
+      <!-- Histórico de Eventos -->
+      <section class="events-section">
+        <h3>Histórico de eventos</h3>
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th>DATA E HORA</th>
+              <th>DISPOSITIVO / SETOR</th>
+              <th>EVENTO</th>
+              <th>DETALHES</th>
+              <th>ÁGUA APLICADA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>26/05/2024 06:30</td>
+              <td><strong>Pivô Central 01</strong><br>Talhão 12</td>
+              <td><span class="status success">Irrigação concluída</span></td>
+              <td>Duração: 2h 45min<br>Início: 03:45 - Término: 06:30</td>
+              <td><strong>18.500 L</strong></td>
+            </tr>
+            <tr>
+              <td>25/05/2024 17:20</td>
+              <td><strong>Gotejamento Setor A</strong><br>Talhão 07</td>
+              <td><span class="status success">Irrigação concluída</span></td>
+              <td>Duração: 1h 30min<br>Início: 15:50 - Término: 17:20</td>
+              <td><strong>5.200 L</strong></td>
+            </tr>
+            <!-- Adicione mais linhas conforme necessário -->
+          </tbody>
+        </table>
+        <button class="btn-more">Ver mais eventos</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
