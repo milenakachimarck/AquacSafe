@@ -2,6 +2,11 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+body {
+  box-sizing: border-box;
+}
+
+/* Glass Effect */
 .glass-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -12,6 +17,7 @@
   border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
+/* Pulse Animation */
 .pulse-dot {
   animation: pulse-anim 2s infinite;
 }
@@ -27,6 +33,7 @@
   }
 }
 
+/* Hover Effect */
 .info-card-hover {
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -36,13 +43,9 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
+/* Chart Container */
 .chart-wrapper {
   position: relative;
   width: 100%;
   max-height: 280px;
-}
-
-/* Correção extra */
-body {
-  box-sizing: border-box;
 }
