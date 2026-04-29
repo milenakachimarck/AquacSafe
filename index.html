@@ -1,140 +1,112 @@
-<!doctype html>
-<html lang="pt-br" class="h-full">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AcquaSafe - Painel de Controle</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  
-  <!-- Bibliotecas externas -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  
-  <!-- SDKs -->
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- CSS Externo -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="h-full bg-[#0a0f1a] text-white overflow-auto">
-  <div id="app" class="h-full w-full flex flex-col">
+// Config & SDK
+const defaultConfig = {
+    background_color: '#0a0f1a',
+    surface_color: '#ffffff0f',
+    text_color: '#ffffff',
+    primary_action_color: '#22d3ee',
+    secondary_action_color: '#94a3b8',
+    font_family: 'DM Sans',
+    font_size: 16,
+    page_title: 'Painel de Controle',
+    page_subtitle: 'Monitoramento técnico e parâmetros de referência.'
+};
+
+function applyConfig(config) {
+    const t = document.getElementById('page-title');
+    const s = document.getElementById('page-subtitle');
     
-    <!-- Navbar -->
-    <header class="w-full px-6 py-4 flex items-center justify-between border-b border-white/10" style="background:rgba(10,15,26,0.9);">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-          <i data-lucide="droplets" class="w-5 h-5 text-white"></i>
-        </div>
-        <span id="brand-name" class="text-xl font-bold tracking-tight bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text text-transparent">
-          AcquaSafe
-        </span>
-      </div>
-      <div class="flex items-center gap-2 text-sm text-slate-400">
-        <i data-lucide="activity" class="w-4 h-4"></i> 
-        <span>Monitoramento em tempo real</span>
-      </div>
-    </header>
+    if (t) t.textContent = config.page_title || defaultConfig.page_title;
+    if (s) s.textContent = config.page_subtitle || defaultConfig.page_subtitle;
+    
+    document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
+    document.body.style.color = config.text_color || defaultConfig.text_color;
+    
+    const font = config.font_family || defaultConfig.font_family;
+    const size = config.font_size || defaultConfig.font_size;
+    
+    document.body.style.fontFamily = `${font}, DM Sans, sans-serif`;
+    
+    if (t) t.style.fontSize = `${size * 1.8}px`;
+    if (s) s.style.fontSize = `${size}px`;
+}
 
-    <!-- Main Content -->
-    <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
-      
-      <!-- Header Section -->
-      <section class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 id="page-title" class="text-2xl sm:text-3xl font-bold text-white">Painel de Controle</h1>
-          <p id="page-subtitle" class="text-slate-400 mt-1">Monitoramento técnico e parâmetros de referência.</p>
-        </div>
-        <div class="flex items-center gap-4 text-sm">
-          <span class="flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-dot inline-block"></span>
-            Sistema Ativo
-          </span>
-        </div>
-      </section>
+// Inicialização do SDK
+if (window.elementSdk) {
+    window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => applyConfig(config),
+        mapToCapabilities: (config) => ({
+            recolorables: [
+                { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+                { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+                { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+                { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
+                { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+            ],
+            borderables: [],
+            fontEditable: {
+                get: () => config.font_family || defaultConfig.font_family,
+                set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+            },
+            fontSizeable: {
+                get: () => config.font_size || defaultConfig.font_size,
+                set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+            }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+            ['page_title', config.page_title || defaultConfig.page_title],
+            ['page_subtitle', config.page_subtitle || defaultConfig.page_subtitle]
+        ])
+    });
+}
 
-      <!-- Content Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 flex-1">
-        
-        <!-- Chart -->
-        <div class="lg:col-span-2 glass-card glow-border rounded-2xl p-5 flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <h3 class="font-semibold text-lg text-white flex items-center gap-2">
-              <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyan-400"></i> 
-              Parâmetros de Qualidade
-            </h3>
-            <span class="text-xs text-slate-500 bg-white/5 px-3 py-1 rounded-full">
-              Última atualização: agora
-            </span>
-          </div>
-          <div class="chart-wrapper flex-1">
-            <canvas id="qualityChart"></canvas>
-          </div>
-        </div>
+// Gráfico
+const ctx = document.getElementById('qualityChart').getContext('2d');
 
-        <!-- Sidebar Cards -->
-        <aside class="flex flex-col gap-4">
-          <!-- Card 1 -->
-          <div class="glass-card glow-border rounded-2xl p-5 info-card-hover cursor-pointer">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500/20 to-rose-600/10 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="bug" class="w-6 h-6 text-rose-400"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-white">Patógenos</h4>
-                <p class="text-sm text-slate-400">Catálogo Técnico</p>
-              </div>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/5 text-xs text-slate-500 flex items-center gap-1">
-              <i data-lucide="database" class="w-3 h-3"></i> 
-              12 registros catalogados
-            </div>
-          </div>
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['pH', 'Turbidez', 'Cloro', 'Coliformes', 'Flúor', 'DBO'],
+        datasets: [
+            {
+                label: 'Valor Atual',
+                data: [7.2, 3.5, 1.8, 0, 0.7, 4.2],
+                backgroundColor: 'rgba(34,211,238,0.7)',
+                borderRadius: 6,
+                borderSkipped: false
+            },
+            {
+                label: 'Limite Máximo',
+                data: [9.5, 5, 5, 1, 1.5, 5],
+                backgroundColor: 'rgba(99,102,241,0.3)',
+                borderRadius: 6,
+                borderSkipped: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { 
+                labels: { 
+                    color: '#94a3b8', 
+                    font: { family: 'DM Sans' } 
+                } 
+            }
+        },
+        scales: {
+            x: { 
+                ticks: { color: '#64748b' }, 
+                grid: { color: 'rgba(255,255,255,0.04)' } 
+            },
+            y: { 
+                ticks: { color: '#64748b' }, 
+                grid: { color: 'rgba(255,255,255,0.04)' } 
+            }
+        }
+    }
+});
 
-          <!-- Card 2 -->
-          <div class="glass-card glow-border rounded-2xl p-5 info-card-hover cursor-pointer">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="flask-conical" class="w-6 h-6 text-emerald-400"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-white">Soluções</h4>
-                <p class="text-sm text-slate-400">Guia de Manejo</p>
-              </div>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/5 text-xs text-slate-500 flex items-center gap-1">
-              <i data-lucide="book-open" class="w-3 h-3"></i> 
-              8 protocolos ativos
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="glass-card glow-border rounded-2xl p-5 info-card-hover cursor-pointer">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 flex items-center justify-center flex-shrink-0">
-                <i data-lucide="alert-triangle" class="w-6 h-6 text-amber-400"></i>
-              </div>
-              <div>
-                <h4 class="font-semibold text-white">Periculosidade</h4>
-                <p class="text-sm text-slate-400">0 Alertas</p>
-              </div>
-            </div>
-            <div class="mt-3 pt-3 border-t border-white/5 text-xs text-emerald-400 flex items-center gap-1">
-              <i data-lucide="shield-check" class="w-3 h-3"></i> 
-              Todos os níveis seguros
-            </div>
-          </div>
-        </aside>
-      </div>
-    </main>
-  </div>
-
-  <!-- Script externo -->
-  <script src="script.js"></script>
-</body>
-</html>
+// Inicializa os ícones do Lucide
+lucide.createIcons();
