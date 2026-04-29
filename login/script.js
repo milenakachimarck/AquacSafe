@@ -1,23 +1,20 @@
-// ====================== LOGIN FUNCTION ======================
+// ====================== HANDLE LOGIN ======================
 function handleLogin(e) {
   e.preventDefault();
 
   const btn = document.getElementById('btn-text');
-  
-  // Animação de carregamento
   btn.textContent = 'Acessando...';
 
-  // Simula um pequeno delay (pode aumentar ou diminuir)
+  // Redirecionamento mais confiável
   setTimeout(() => {
-    // Redireciona para a página principal (painel)
     window.location.href = "../index.html";
     
-    // Alternativa caso queira forçar reload:
+    // Alternativa caso o acima não funcione:
     // window.location.replace("../index.html");
   }, 800);
 }
 
-// ====================== CONFIG & SDK ======================
+// ====================== SDK CONFIG (mantido simplificado) ======================
 const defaultConfig = {
   page_title: 'Bem-vindo ao AcquaSafe',
   page_subtitle: 'Monitoramento de qualidade de água em tempo real',
@@ -25,7 +22,6 @@ const defaultConfig = {
   background_color: '#0a0f1a',
   text_color: '#ffffff',
   primary_action_color: '#22d3ee',
-  secondary_action_color: '#94a3b8',
   font_family: 'DM Sans',
   font_size: 16
 };
@@ -39,53 +35,27 @@ function applyConfig(config) {
   if (subtitle) subtitle.textContent = config.page_subtitle || defaultConfig.page_subtitle;
   if (btnText) btnText.textContent = config.login_button_text || defaultConfig.login_button_text;
 
-  document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
-  document.body.style.color = config.text_color || defaultConfig.text_color;
+  if (config.background_color) document.body.style.backgroundColor = config.background_color;
+  if (config.text_color) document.body.style.color = config.text_color;
 
   const font = config.font_family || defaultConfig.font_family;
   document.body.style.fontFamily = `${font}, sans-serif`;
-
-  const size = config.font_size || defaultConfig.font_size;
-  if (title) title.style.fontSize = `${size * 2}px`;
-  if (subtitle) subtitle.style.fontSize = `${size * 1.1}px`;
 }
 
-// Inicialização do Element SDK
 if (window.elementSdk) {
   window.elementSdk.init({
     defaultConfig,
-    onConfigChange: async (config) => applyConfig(config),
-    mapToCapabilities: (config) => ({
-      recolorables: [
-        { get: () => config.background_color || defaultConfig.background_color, 
-          set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } 
-        },
-        { get: () => config.text_color || defaultConfig.text_color, 
-          set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } 
-        },
-        { get: () => config.primary_action_color || defaultConfig.primary_action_color, 
-          set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } 
-        }
-      ],
-      borderables: [],
-      fontEditable: {
-        get: () => config.font_family || defaultConfig.font_family,
-        set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-      },
-      fontSizeable: {
-        get: () => config.font_size || defaultConfig.font_size,
-        set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
-      }
-    }),
+    onConfigChange: (config) => applyConfig(config),
+    mapToCapabilities: () => ({}),   // simplificado por enquanto
     mapToEditPanelValues: (config) => new Map([
-      ['page_title', config.page_title || defaultConfig.page_title],
-      ['page_subtitle', config.page_subtitle || defaultConfig.page_subtitle],
-      ['login_button_text', config.login_button_text || defaultConfig.login_button_text]
+      ['page_title', config.page_title],
+      ['page_subtitle', config.page_subtitle],
+      ['login_button_text', config.login_button_text]
     ])
   });
 }
 
-// Criar ícones do Lucide
+// Inicializa ícones do Lucide
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 });
