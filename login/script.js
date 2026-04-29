@@ -1,16 +1,20 @@
 // ====================== LOGIN FUNCTION ======================
 function handleLogin(e) {
   e.preventDefault();
-  
+
   const btn = document.getElementById('btn-text');
-  const originalText = btn.textContent;
   
+  // Animação de carregamento
   btn.textContent = 'Acessando...';
-  
+
+  // Simula um pequeno delay (pode aumentar ou diminuir)
   setTimeout(() => {
-    btn.textContent = '✓ Acesso concedido';
-    btn.parentElement.style.opacity = '0.7';
-  }, 1200);
+    // Redireciona para a página principal (painel)
+    window.location.href = "../index.html";
+    
+    // Alternativa caso queira forçar reload:
+    // window.location.replace("../index.html");
+  }, 800);
 }
 
 // ====================== CONFIG & SDK ======================
@@ -53,16 +57,13 @@ if (window.elementSdk) {
     onConfigChange: async (config) => applyConfig(config),
     mapToCapabilities: (config) => ({
       recolorables: [
-        { 
-          get: () => config.background_color || defaultConfig.background_color, 
+        { get: () => config.background_color || defaultConfig.background_color, 
           set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } 
         },
-        { 
-          get: () => config.text_color || defaultConfig.text_color, 
+        { get: () => config.text_color || defaultConfig.text_color, 
           set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } 
         },
-        { 
-          get: () => config.primary_action_color || defaultConfig.primary_action_color, 
+        { get: () => config.primary_action_color || defaultConfig.primary_action_color, 
           set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } 
         }
       ],
@@ -84,7 +85,7 @@ if (window.elementSdk) {
   });
 }
 
-// Criar ícones do Lucide após carregar a página
+// Criar ícones do Lucide
 document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 });
