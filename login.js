@@ -1,26 +1,25 @@
-// Aguarda o documento carregar para iniciar os ícones
+// Inicializa os ícones da biblioteca Lucide
 document.addEventListener('DOMContentLoaded', () => {
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+    lucide.createIcons();
 });
 
-// Função de Login
+// Lógica de Login
 function handleLogin(e) {
     e.preventDefault();
     
     const btnText = document.getElementById('btn-text');
+    const originalText = btnText.textContent;
     
-    // Feedback visual de carregamento
+    // Feedback visual
     btnText.textContent = 'Acessando...';
     
     setTimeout(() => {
         btnText.textContent = '✓ Acesso concedido';
-        // Reduz a opacidade do formulário para dar efeito de finalizado
+        // Efeito de desfoque no formulário após sucesso
         const form = e.target;
         form.style.opacity = '0.6';
-        form.style.pointerEvents = 'none'; // Impede cliques repetidos
+        form.style.pointerEvents = 'none';
         
-        console.log("Login realizado com sucesso!");
+        console.log("Login efetuado!");
     }, 800);
 }
