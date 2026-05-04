@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patógenos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        table { border-collapse: collapse; }
+        th, td { border: 1px solid #e5e7eb; }
+        tr:hover { background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-blue-700 text-white py-4 shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">BioLab Manager</h1>
+            <div class="flex gap-8">
+                <a href="solucoes.html" class="hover:text-blue-200 font-medium">Soluções</a>
+                <a href="patogenos.html" class="hover:text-blue-200 font-medium active">Patógenos</a>
+                <a href="periculosidade.html" class="hover:text-blue-200 font-medium">Periculosidade</a>
+            </div>
+        </div>
+    </nav>
 
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <header class="mb-10">
+            <h2 class="text-4xl font-bold text-gray-800 mb-2">Patógenos</h2>
+            <p class="text-gray-600">Cadastro e informações de agentes biológicos</p>
+        </header>
+
+        <div class="flex flex-wrap gap-4 mb-6">
+            <input id="searchPat" type="text" placeholder="Buscar patógeno..." 
+                   class="px-4 py-3 border border-gray-300 rounded-lg w-80 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-emerald-700 text-white">
+                    <tr>
+                        <th class="px-6 py-4 text-left">Patógeno</th>
+                        <th class="px-6 py-4 text-left">Grupo de Risco</th>
+                        <th class="px-6 py-4 text-left">Tipo</th>
+                        <th class="px-6 py-4 text-left">Doença Associada</th>
+                        <th class="px-6 py-4 text-center">Nível BSL</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaPatogenos" class="text-gray-700"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const patogenos = [
+            { nome: "Escherichia coli O157:H7", risco: "2", tipo: "Bactéria", doenca: "Colite hemorrágica", bsl: "BSL-2" },
+            { nome: "Mycobacterium tuberculosis", risco: "3", tipo: "Bactéria", doenca: "Tuberculose", bsl: "BSL-3" },
+            { nome: "SARS-CoV-2", risco: "3", tipo: "Vírus", doenca: "COVID-19", bsl: "BSL-3" },
+            { nome: "Candida albicans", risco: "2", tipo: "Fungo", doenca: "Candidíase", bsl: "BSL-2" },
+            { nome: "Plasmodium falciparum", risco: "3", tipo: "Protozoário", doenca: "Malária", bsl: "BSL-3" }
+        ];
+
+        function renderPatogenos() {
+            const tbody = document.getElementById('tabelaPatogenos');
+            tbody.innerHTML = patogenos.map(p => `
+                <tr class="border-t hover:bg-emerald-50">
+                    <td class="px-6 py-4 font-medium">${p.nome}</td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">GR${p.risco}</span>
+                    </td>
+                    <td class="px-6 py-4">${p.tipo}</td>
+                    <td class="px-6 py-4">${p.doenca}</td>
+                    <td class="px-6 py-4 text-center font-mono font-bold">${p.bsl}</td>
+                </tr>
+            `).join('');
+        }
+
+        document.getElementById('searchPat').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('#tabelaPatogenos tr').forEach(row => {
+                row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none';
+            });
+        });
+
+        window.onload = renderPatogenos;
+    </script>
+</body>
+</html>

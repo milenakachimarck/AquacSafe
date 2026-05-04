@@ -49,3 +49,124 @@ body {
   width: 100%;
   max-height: 280px;
 }
+
+/* ====================== styles.css ====================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+    background-color: #1e40af;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+nav a.active {
+    color: #dbeafe;
+    font-weight: 600;
+    border-bottom: 3px solid #60a5fa;
+}
+
+/* Cabeçalhos */
+header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1e2937;
+}
+
+/* Tabelas */
+.table-container {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    background-color: #1e40af;
+    color: white;
+}
+
+td {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Inputs de busca */
+input[type="text"] {
+    width: 320px;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-clear {
+    background-color: #e2e8f0;
+    color: #475569;
+}
+
+.btn-clear:hover {
+    background-color: #cbd5e1;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    input[type="text"] {
+        width: 100%;
+    }
+    
+    nav .flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
