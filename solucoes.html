@@ -68,71 +68,21 @@
             <span>Esta página gerencia o estoque e informações de soluções químicas usadas no laboratório.</span>
         </div>
     </div>
-
-   <script>
-        const solucoes = [
-            { nome: "Álcool Etílico 70%", concentracao: "70% v/v", solvente: "Água", uso: "Desinfecção de superfícies", validade: 180 },
-            { nome: "Hipoclorito de Sódio", concentracao: "2-5%", solvente: "Água", uso: "Descontaminação", validade: 30 },
-            { nome: " Solução de Formaldeído", concentracao: "10%", solvente: "Água", uso: "Fixação histológica", validade: 365 },
-            { nome: "PBS (Phosphate Buffered Saline)", concentracao: "1x", solvente: "Água", uso: "Lavagem celular", validade: 60 },
-            { nome: "Solução de Ácido Peracético", concentracao: "0.2%", solvente: "Água", uso: "Esterilização", validade: 14 }
-        ];
-
-        function renderTabela() {
-            const tbody = document.getElementById('tabelaSolucoes');
-            tbody.innerHTML = '';
-            
-            solucoes.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = 'border-t hover:bg-blue-50';
-                tr.innerHTML = `
-                    <td class="px-6 py-4 font-medium">${item.nome}</td>
-                    <td class="px-6 py-4">${item.concentracao}</td>
-                    <td class="px-6 py-4">${item.solvente}</td>
-                    <td class="px-6 py-4">${item.uso}</td>
-                    <td class="px-6 py-4">${item.validade}</td>
-                    <td class="px-6 py-4 text-center">
-                        <button onclick="editar(this)" class="text-blue-600 hover:text-blue-800 mr-3">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button onclick="excluir(this)" class="text-red-600 hover:text-red-800">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // Busca
-        document.getElementById('search').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const rows = document.querySelectorAll('#tabelaSolucoes tr');
-            
-            rows.forEach(row => {
-                const text = row.textContent.toLowerCase();
-                row.style.display = text.includes(term) ? '' : 'none';
-            });
-        });
-
-        function limparFiltros() {
-            document.getElementById('search').value = '';
-            const rows = document.querySelectorAll('#tabelaSolucoes tr');
-            rows.forEach(row => row.style.display = '');
-        }
-
-        function editar(btn) {
-            alert("Funcionalidade de edição em desenvolvimento.");
-        }
-        
-        function excluir(btn) {
-            if (confirm("Excluir esta solução?")) {
-                btn.closest('tr').remove();
-            }
-        }
-
-        // Inicializar
-        window.onload = renderTabela;
-    </script>
 </body>
+<nav class="bg-[#0a0f1a] text-white py-4 shadow-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                <i class="fas fa-droplet text-white text-sm"></i>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight">AcquaSafe</h1>
+        </div>
+        <div class="flex gap-8">
+            <a href="solucoes.html" class="text-cyan-400 font-medium">Soluções</a>
+            <a href="patogenos.html" class="hover:text-cyan-300 transition-colors">Patógenos</a>
+            <a href="periculosidade.html" class="hover:text-cyan-300 transition-colors">Periculosidade</a>
+            <a href="index.html" class="text-red-400 hover:text-red-300 ml-4">Sair</a>
+        </div>
+    </div>
+</nav>
 </html>
