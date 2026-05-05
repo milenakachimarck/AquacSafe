@@ -16,11 +16,15 @@ function handleLogin(e) {
     setTimeout(() => {
         btnText.textContent = '✓ Acesso concedido';
         // Efeito de desfoque no formulário após sucesso
+        setTimeout(() => {
+        window.location.href = "portal.html";  // ← Essencial
+    }, 600);
+    
+}, 800);
         const form = e.target;
         form.style.opacity = '0.6';
         form.style.pointerEvents = 'none';
         
         console.log("Login efetuado!");
-    }, 800);
-}
 
+}
