@@ -14,6 +14,46 @@
 <body class="h-full w-full bg-[#0a0f1a] text-white overflow-auto">
     <div class="h-full w-full flex flex-col">
         
+<div class="w-full max-w-md">
+    <div class="glass-card glow-border rounded-2xl p-8 space-y-6">
+        <form id="loginForm" class="space-y-5" onsubmit="handleLogin(event)">
+            <div>
+                <label class="block text-sm font-medium text-white mb-2">Email ou CPF</label>
+                <input type="text" id="username" 
+                       placeholder="seu.email@exemplo.com ou CPF" 
+                       class="w-full px-4 py-3 rounded-lg input-field text-white placeholder-white/40 transition-colors" 
+                       required>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-white mb-2">Senha</label>
+                <input type="password" id="password" 
+                       placeholder="••••••••" 
+                       class="w-full px-4 py-3 rounded-lg input-field text-white placeholder-white/40 transition-colors" 
+                       required>
+            </div>
+            
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="w-4 h-4 rounded accent-cyan-400">
+                    <span class="text-white/70">Lembrar-me</span>
+                </label>
+                <a href="#" class="text-cyan-400 hover:text-cyan-300 transition-colors">Esqueci a senha</a>
+            </div>
+
+            <button type="submit" id="loginBtn"
+                    class="w-full btn-gradient text-white font-semibold py-3 rounded-lg transition-all duration-300">
+                <span id="btn-text">Acessar Painel</span>
+            </button>
+        </form>
+
+        <p class="text-center text-white/60 text-sm">
+            Não tem conta? 
+            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">Criar conta</a>
+        </p>
+    </div>
+</div>
+
         <div class="fixed inset-0 overflow-hidden pointer-events-none">
             <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
