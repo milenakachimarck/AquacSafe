@@ -1,0 +1,73 @@
+/* style-dark.css */
+* {
+    font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+body {
+    background-color: #0a0f1a;
+    color: #e2e8f0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Glassmorphism */
+.glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+}
+
+.glow-border {
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* Navbar Dark */
+nav {
+    background: rgba(10, 15, 26, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* Tabelas Dark */
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgba(15, 23, 42, 0.8);
+    color: #67e8f9;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+}
+
+td {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+tr:hover {
+    background-color: rgba(103, 232, 249, 0.08);
+}
+
+/* Inputs Dark */
+input[type="text"] {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 12px;
+}
+
+input[type="text"]:focus {
+    border-color: #22d3ee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2);
+}
+
+/* Texto Gradiente */
+.gradient-text {
+    background: linear-gradient(135deg, #22d3ee, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
