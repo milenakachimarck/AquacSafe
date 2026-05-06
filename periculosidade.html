@@ -53,14 +53,20 @@
                 </table>
             </div>
 
-            <!-- Card de resumo -->
-            <div class="space-y-6">
-                <div class="glass-card p-6 rounded-2xl">
-                    <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
-                        <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
-                        Legenda de Risco
-                    </h3>
-                    <!-- cards de legenda -->
+            <div class="glass-card p-6 rounded-2xl">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+                    <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400"></i>
+                    Legenda de Risco
+                </h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 p-4 bg-red-500/10 rounded-xl">
+                        <div class="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                        <div><strong class="text-white">Alto Risco</strong> - Patógenos perigosos</div>
+                    </div>
+                    <div class="flex items-center gap-3 p-4 bg-orange-500/10 rounded-xl">
+                        <div class="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                        <div><strong class="text-white">Risco Moderado</strong> - Agentes infecciosos</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,7 +74,27 @@
 
     <script>
         lucide.createIcons();
-        // Seu script original de perigos aqui...
+
+        const perigos = [
+            { nivel: "BSL-1", desc: "Risco mínimo", exemplo: "Bactérias não patogênicas", epi: "Luvas, jaleco" },
+            { nivel: "BSL-2", desc: "Risco moderado", exemplo: "E. coli patogênica", epi: "Luvas, jaleco, óculos" },
+            { nivel: "BSL-3", desc: "Risco alto", exemplo: "Mycobacterium tuberculosis", epi: "Respirador N95, roupa completa" },
+            { nivel: "BSL-4", desc: "Risco muito alto", exemplo: "Vírus Ebola", epi: "Traje positivo pressurizado" }
+        ];
+
+        function renderPerigos() {
+            const tbody = document.getElementById('tabelaPerigo');
+            tbody.innerHTML = perigos.map(p => `
+                <tr class="border-t border-white/10 hover:bg-white/5">
+                    <td class="px-6 py-4 font-bold text-cyan-400">${p.nivel}</td>
+                    <td class="px-6 py-4">${p.desc}</td>
+                    <td class="px-6 py-4">${p.exemplo}</td>
+                    <td class="px-6 py-4 text-sm">${p.epi}</td>
+                </tr>
+            `).join('');
+        }
+
+        window.onload = renderPerigos;
     </script>
 </body>
 </html>

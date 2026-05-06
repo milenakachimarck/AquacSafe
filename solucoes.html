@@ -14,7 +14,7 @@
 </head>
 <body class="h-full bg-[#0a0f1a] text-white overflow-auto">
 
-    <!-- Navbar igual ao Login -->
+    <!-- Navbar Premium -->
     <nav class="py-5 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -40,7 +40,9 @@
         </header>
 
         <div class="flex flex-wrap gap-4 mb-6">
-            <input id="search" type="text" placeholder="Buscar solução..." 
+            <input id="search" 
+                   type="text" 
+                   placeholder="Buscar solução..." 
                    class="px-4 py-3 w-80 rounded-lg bg-white/5 border border-white/10 focus:border-cyan-400 outline-none">
             <button onclick="limparFiltros()" 
                     class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-medium transition-colors">
@@ -71,7 +73,8 @@
         const solucoes = [
             { nome: "Hipoclorito de Sódio", concentracao: "10-15%", solvente: "Água", uso: "Desinfecção", validade: "180" },
             { nome: "Sulfato de Cobre", concentracao: "0.1%", solvente: "Água", uso: "Algicida", validade: "365" },
-            { nome: "Ácido Peracético", concentracao: "5%", solvente: "Água", uso: "Esterilização", validade: "90" }
+            { nome: "Ácido Peracético", concentracao: "5%", solvente: "Água", uso: "Esterilização", validade: "90" },
+            { nome: "Cloreto de Cálcio", concentracao: "2%", solvente: "Água", uso: "Tratamento", validade: "240" }
         ];
 
         function renderSolucoes() {

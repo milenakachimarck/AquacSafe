@@ -61,23 +61,30 @@
 
     <script>
         lucide.createIcons();
-        // (Script mantido igual, só alterei as classes de cor)
-        const patogenos = [ /* ... mesmo array */ ];
+
+        const patogenos = [
+            { nome: "Escherichia coli O157:H7", risco: "2", tipo: "Bactéria", doenca: "Colite hemorrágica", bsl: "BSL-2" },
+            { nome: "Mycobacterium tuberculosis", risco: "3", tipo: "Bactéria", doenca: "Tuberculose", bsl: "BSL-3" },
+            { nome: "SARS-CoV-2", risco: "3", tipo: "Vírus", doenca: "COVID-19", bsl: "BSL-3" },
+            { nome: "Candida albicans", risco: "2", tipo: "Fungo", doenca: "Candidíase", bsl: "BSL-2" },
+            { nome: "Plasmodium falciparum", risco: "3", tipo: "Protozoário", doenca: "Malária", bsl: "BSL-3" }
+        ];
 
         function renderPatogenos() {
             const tbody = document.getElementById('tabelaPatogenos');
             tbody.innerHTML = patogenos.map(p => `
                 <tr class="border-t border-white/10 hover:bg-white/5">
                     <td class="px-6 py-4 font-medium">${p.nome}</td>
-                    <td class="px-6 py-4"><span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400">GR${p.risco}</span></td>
+                    <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400">GR${p.risco}</span>
+                    </td>
                     <td class="px-6 py-4">${p.tipo}</td>
                     <td class="px-6 py-4">${p.doenca}</td>
-                    <td class="px-6 py-4 text-center font-mono">${p.bsl}</td>
+                    <td class="px-6 py-4 text-center font-mono font-bold">${p.bsl}</td>
                 </tr>
             `).join('');
         }
 
-        // ... resto do script de busca
         document.getElementById('searchPat').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             document.querySelectorAll('#tabelaPatogenos tr').forEach(row => {
