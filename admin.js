@@ -1,3 +1,4 @@
+
 // VALORES SIMULADOS
 let ph = 7.0;
 let temperatura = 24;
