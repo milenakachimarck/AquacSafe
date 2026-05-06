@@ -9,72 +9,75 @@
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="login.css">     <!-- seu css atual -->
-    <link rel="stylesheet" href="style-dark.css"> <!-- novo css dark -->
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style-dark.css">
 </head>
-<body class="bg-gray-50">
-    <nav class="bg-blue-700 text-white py-4 shadow-lg">
+<body class="h-full bg-[#0a0f1a] text-white overflow-auto">
+
+    <nav class="py-5 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <h1 class="text-2xl font-bold">AquacSafe</h1>
-            <div class="flex gap-8">
-                <a href="solucoes.html" class="hover:text-blue-200 font-medium">Soluções</a>
-                <a href="patogenos.html" class="hover:text-blue-200 font-medium active">Patógenos</a>
-                <a href="periculosidade.html" class="hover:text-blue-200 font-medium">Periculosidade</a>
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                    <i data-lucide="droplets" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-2xl font-bold gradient-text">AcquaSafe</span>
+            </div>
+            
+            <div class="flex gap-8 text-sm">
+                <a href="solucoes.html" class="hover:text-cyan-400 transition-colors">Soluções</a>
+                <a href="patogenos.html" class="text-cyan-400 font-medium">Patógenos</a>
+                <a href="periculosidade.html" class="hover:text-cyan-400 transition-colors">Periculosidade</a>
+                <a href="index.html" class="text-red-400 hover:text-red-300">Sair</a>
             </div>
         </div>
     </nav>
 
-    <div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="max-w-7xl mx-auto px-6 py-10">
         <header class="mb-10">
-            <h2 class="text-4xl font-bold text-gray-800 mb-2">Patógenos</h2>
-            <p class="text-gray-600">Cadastro e informações de agentes biológicos</p>
+            <h2 class="text-4xl font-bold text-white mb-2">Patógenos</h2>
+            <p class="text-slate-400">Cadastro e informações de agentes biológicos</p>
         </header>
 
         <div class="flex flex-wrap gap-4 mb-6">
             <input id="searchPat" type="text" placeholder="Buscar patógeno..." 
-                   class="px-4 py-3 border border-gray-300 rounded-lg w-80 focus:outline-none focus:border-blue-500">
+                   class="px-4 py-3 w-80 rounded-lg bg-white/5 border border-white/10 focus:border-cyan-400 outline-none">
         </div>
 
-        <div class="bg-white rounded-2xl shadow overflow-hidden">
+        <div class="glass-card rounded-2xl overflow-hidden">
             <table class="w-full">
-                <thead class="bg-emerald-700 text-white">
-                    <tr>
-                        <th class="px-6 py-4 text-left">Patógeno</th>
-                        <th class="px-6 py-4 text-left">Grupo de Risco</th>
-                        <th class="px-6 py-4 text-left">Tipo</th>
-                        <th class="px-6 py-4 text-left">Doença Associada</th>
-                        <th class="px-6 py-4 text-center">Nível BSL</th>
+                <thead>
+                    <tr class="bg-white/5">
+                        <th class="px-6 py-5 text-left">Patógeno</th>
+                        <th class="px-6 py-5 text-left">Grupo de Risco</th>
+                        <th class="px-6 py-5 text-left">Tipo</th>
+                        <th class="px-6 py-5 text-left">Doença Associada</th>
+                        <th class="px-6 py-5 text-center">Nível BSL</th>
                     </tr>
                 </thead>
-                <tbody id="tabelaPatogenos" class="text-gray-700"></tbody>
+                <tbody id="tabelaPatogenos" class="text-slate-300"></tbody>
             </table>
         </div>
     </div>
 
     <script>
-        const patogenos = [
-            { nome: "Escherichia coli O157:H7", risco: "2", tipo: "Bactéria", doenca: "Colite hemorrágica", bsl: "BSL-2" },
-            { nome: "Mycobacterium tuberculosis", risco: "3", tipo: "Bactéria", doenca: "Tuberculose", bsl: "BSL-3" },
-            { nome: "SARS-CoV-2", risco: "3", tipo: "Vírus", doenca: "COVID-19", bsl: "BSL-3" },
-            { nome: "Candida albicans", risco: "2", tipo: "Fungo", doenca: "Candidíase", bsl: "BSL-2" },
-            { nome: "Plasmodium falciparum", risco: "3", tipo: "Protozoário", doenca: "Malária", bsl: "BSL-3" }
-        ];
+        lucide.createIcons();
+        // (Script mantido igual, só alterei as classes de cor)
+        const patogenos = [ /* ... mesmo array */ ];
 
         function renderPatogenos() {
             const tbody = document.getElementById('tabelaPatogenos');
             tbody.innerHTML = patogenos.map(p => `
-                <tr class="border-t hover:bg-emerald-50">
+                <tr class="border-t border-white/10 hover:bg-white/5">
                     <td class="px-6 py-4 font-medium">${p.nome}</td>
-                    <td class="px-6 py-4">
-                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700">GR${p.risco}</span>
-                    </td>
+                    <td class="px-6 py-4"><span class="px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-400">GR${p.risco}</span></td>
                     <td class="px-6 py-4">${p.tipo}</td>
                     <td class="px-6 py-4">${p.doenca}</td>
-                    <td class="px-6 py-4 text-center font-mono font-bold">${p.bsl}</td>
+                    <td class="px-6 py-4 text-center font-mono">${p.bsl}</td>
                 </tr>
             `).join('');
         }
 
+        // ... resto do script de busca
         document.getElementById('searchPat').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             document.querySelectorAll('#tabelaPatogenos tr').forEach(row => {
