@@ -4,12 +4,12 @@ body { box-sizing: border-box; }
 
 /* Efeito de Vidro (Glassmorphism) */
 .glass-card {
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+    background:  rgb(255, 255, 255)ortant;
+    border: 1px solid rgb(255, 255, 255) !important;
     backdrop-filter: blur(12px);
 }
 
-.glow-border { border: 1px solid rgba(56,189,248,0.25) !important; }
+.glow-border { border: 1px solid rgb(255, 255, 255) !important; }
 
 /* Texto Gradiente */
 .gradient-text { 
