@@ -45,7 +45,7 @@ table th {
 }
 
 /* RESPONSIVO */
-@media(max-width: 900px) {
+@media(max-width: 900px) 
 
     body {
         flex-direction: column;
@@ -61,4 +61,3 @@ table th {
         margin-left: 0;
         width: 100%;
     }
-}
