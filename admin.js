@@ -43,22 +43,3 @@ function atualizarDados() {
 // ATUALIZA A CADA 3 SEGUNDOS
 setInterval(atualizarDados, 3000);
 
-// ==================== BOTÃO ATUALIZAR ====================
-
-const btnAtualizar = document.getElementById('btnAtualizar');
-
-btnAtualizar.addEventListener('click', () => {
-    
-    // Efeito visual de loading
-    btnAtualizar.classList.add('loading');
-    btnAtualizar.innerHTML = `<span>Atualizando...</span>`;
-
-    // Chama a função que você já tem
-    atualizarDados();
-
-    // Remove o loading após 800ms (tempo suficiente para ver o efeito)
-    setTimeout(() => {
-        btnAtualizar.classList.remove('loading');
-        btnAtualizar.innerHTML = `<span>🔄 Atualizar Dados Agora</span>`;
-    }, 800);
-});
