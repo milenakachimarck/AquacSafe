@@ -105,7 +105,7 @@ table th {
 /* RESPONSIVO */
 @media(max-width: 900px) 
 
-    body {
+     {
         flex-direction: column;
     }
 
@@ -119,3 +119,56 @@ table th {
         margin-left: 0;
         width: 100%;
     }
+
+    /* ===================== BOTÃO PRINCIPAL ===================== */
+.btn-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3);
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+
+.btn-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(22, 163, 74, 0.4);
+    background: linear-gradient(135deg, #15803d, #166534);
+}
+
+.btn-principal:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+}
+
+.btn-principal span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Efeito de loading (opcional) */
+.btn-principal.loading {
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.btn-principal.loading span::after {
+    content: "⏳";
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin 
+{
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
