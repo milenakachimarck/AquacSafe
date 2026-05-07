@@ -1,43 +1,21 @@
-// Função para lidar com o CADASTRO
-const formCadastro = document.getElementById('formCadastro');
-if (formCadastro) {
-    formCadastro.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const login = document.getElementById('cad-login').value;
-        const senha = document.getElementById('cad-senha').value;
-        const nome = document.getElementById('cad-nome').value;
-
-        // Salva no localStorage como uma string JSON
-        const usuario = { login, senha, nome };
-        localStorage.setItem('usuarioAcquaSafe', JSON.stringify(usuario));
-
-        alert('Cadastro realizado com sucesso! Redirecionando para login...');
-        window.location.href = 'index.html';
-    });
-}
-
-// Função para lidar com o LOGIN
+// Função de Login (exemplo)
 function handleLogin(event) {
     event.preventDefault();
     
-    // Pega os valores dos inputs do index.html (assumindo que você adicione IDs a eles)
-    const loginDigitado = event.target.querySelector('input[type="text"]').value;
-    const senhaDigitada = event.target.querySelector('input[type="password"]').value;
+    const usuario = document.getElementById('login-usuario').value;
+    const senha = document.getElementById('login-senha').value;
 
-    // Busca o usuário "no banco de dados local"
-    const dadosSalvos = localStorage.getItem('usuarioAcquaSafe');
-
-    if (dadosSalvos) {
-        const usuario = JSON.parse(dadosSalvos);
-
-        if (loginDigitado === usuario.login && senhaDigitada === usuario.senha) {
-            alert(`Bem-vindo, ${usuario.nome}!`);
-            window.location.href = 'portal.html'; // Redireciona para o painel
-        } else {
-            alert('Usuário ou senha incorretos.');
-        }
+    if (usuario && senha) {
+        // Simulação de login bem-sucedido
+        alert("Login realizado com sucesso! (Simulação)");
+        // Redirecionar para o painel (mude o nome do arquivo se necessário)
+        // window.location.href = "painel.html";
     } else {
-        alert('Nenhum usuário cadastrado neste navegador.');
+        alert("Por favor, preencha todos os campos.");
     }
 }
+
+// Inicialização dos ícones Lucide
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+});
