@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AcquaSafe - Login</title>
-   
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-   
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body class="h-full w-full bg-[#0a0f1a] text-white overflow-auto">
     <div class="h-full w-full flex flex-col">
-       
         <div class="fixed inset-0 overflow-hidden pointer-events-none">
             <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
         </div>
 
         <div class="relative flex-1 flex flex-col items-center justify-center px-4 py-8">
-           
             <div class="text-center mb-12">
                 <div class="flex items-center justify-center gap-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
@@ -28,8 +24,8 @@
                     </div>
                     <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">AcquaSafe</span>
                 </div>
-                <h1 id="page-title" class="text-3xl sm:text-4xl font-bold mb-3">Bem-vindo ao AcquaSafe</h1>
-                <p id="page-subtitle" class="text-slate-400 text-lg">Monitoramento de qualidade de água em tempo real</p>
+                <h1 class="text-3xl sm:text-4xl font-bold mb-3">Bem-vindo ao AcquaSafe</h1>
+                <p class="text-slate-400 text-lg">Monitoramento de qualidade de água em tempo real</p>
             </div>
 
             <div class="w-full max-w-md">
@@ -37,16 +33,12 @@
                     <form class="space-y-5" onsubmit="handleLogin(event)">
                         <div>
                             <label class="block text-sm font-medium text-white mb-2">Email ou CPF</label>
-                            <input type="text" id="login-usuario" placeholder="seu.email@exemplo.com" 
-                                   class="input-field w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-cyan-400 outline-none" required>
+                            <input type="text" id="login-usuario" placeholder="seu.email@exemplo.com" class="input-field w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-cyan-400 outline-none" required>
                         </div>
-                       
                         <div>
                             <label class="block text-sm font-medium text-white mb-2">Senha</label>
-                            <input type="password" id="login-senha" placeholder="••••••••" 
-                                   class="input-field w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-cyan-400 outline-none" required>
+                            <input type="password" id="login-senha" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-cyan-400 outline-none" required>
                         </div>
-                       
                         <div class="flex items-center justify-between text-sm">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" class="w-4 h-4 rounded accent-cyan-400">
@@ -54,24 +46,21 @@
                             </label>
                             <a href="#" class="text-cyan-400 hover:text-cyan-300 transition-colors">Esqueci a senha</a>
                         </div>
-
                         <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold py-3 rounded-lg transition-all transform hover:scale-[1.01] active:scale-95">
                             Acessar Painel
                         </button>
                     </form>
 
-                    <!-- Botão de Pagamento -->
                     <div class="pt-4 border-t border-white/10">
-                        <a href="pagamento.html" 
-                           class="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-semibold py-3.5 rounded-2xl transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-cyan-500/30">
+                        <a href="pagamento.html" class="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-white font-semibold py-3.5 rounded-2xl transition-all transform hover:scale-[1.02]">
                             <i data-lucide="credit-card" class="w-5 h-5"></i>
                             <span>Escolher Plano e Fazer Pagamento</span>
                         </a>
                     </div>
 
                     <p class="text-center text-white/60 text-sm">
-                        Não tem conta?
-                        <a href="cadastro.html" class="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors">Criar conta</a>
+                        Não tem conta? 
+                        <a href="cadastro.html" class="text-cyan-400 hover:text-cyan-300 font-semibold">Criar conta</a>
                     </p>
                 </div>
             </div>
@@ -82,6 +71,6 @@
         </footer>
     </div>
 
-    <script src="login.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
