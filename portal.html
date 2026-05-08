@@ -24,12 +24,6 @@
         AcquaSafe
       </span>
     </div>
-    
- <button id="btn-go-admin" class="bg-[#22c55e] hover:bg-[#16a34a] text-[#0f1a2e] font-semibold px-8 py-4 rounded-xl flex items-center gap-3 transition-all hover:scale-105 shadow-lg shadow-[#22c55e]/20">
-        <i data-lucide="shield" class="w-5 h-5"></i>
-        Acessar Painel Admin
-      </button>
-    </div>
 
     <div class="flex items-center gap-4">
       <a href="pagamento.html" 
@@ -117,6 +111,16 @@
               <p class="text-sm text-slate-400">Níveis de Risco</p>
             </div>
           </div>
+        </div>
+
+        <!-- === BOTÃO ADMIN ABAIXO DOS BLOCOS === -->
+        <div class="mt-6">
+          <button onclick="window.location.href='admin.html'" 
+                  id="btn-go-admin"
+                  class="w-full bg-[#22c55e] hover:bg-[#16a34a] text-[#0f1a2e] font-semibold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 transition-all hover:scale-105 shadow-lg shadow-[#22c55e]/30 text-lg">
+            <i data-lucide="shield" class="w-6 h-6"></i>
+            Acessar Painel Admin
+          </button>
         </div>
 
       </aside>
