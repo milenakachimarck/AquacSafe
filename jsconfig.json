@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "checkJs": true,           // Ativa verificação de erros no JS
+    "allowJs": true,
+    "strict": false            // false = menos rígido (melhor para iniciantes)
+  },
+  "include": ["**/*"],         // Aplica em todos os arquivos da pasta
+  "exclude": ["node_modules"]
+}
