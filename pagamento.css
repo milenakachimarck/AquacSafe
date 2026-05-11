@@ -1,41 +1,75 @@
 * {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.plan-card {
-  transition: all 0.3s ease;
-}
-
-.plan-card.selected {
-  transform: scale(1.02);
-}
-
-.payment-method {
-  transition: all 0.2s ease;
-}
-
-.payment-method.active {
-  transform: translateY(-2px);
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.pulse-dot {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  font-family: 'DM Sans', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-  box-sizing: border-box;
+  background-color: #0a0f1a;
+}
+
+/* Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+/* Input Field */
+.input-field {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+  padding: 14px 16px;
+  border-radius: 14px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.input-field:focus {
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+  outline: none;
+}
+
+/* Plan Card */
+.plan-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  border-color: #22d3ee;
+}
+
+.plan-card.selected {
+  border: 2px solid #22d3ee;
+  background: rgba(34, 211, 238, 0.08);
+  transform: scale(1.02);
+}
+
+/* Payment Method */
+.payment-method {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.payment-method.active {
+  border: 2px solid #22d3ee;
+  background: rgba(34, 211, 238, 0.1);
+  transform: translateY(-3px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
