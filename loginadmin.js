@@ -1,65 +1,48 @@
-// Credenciais de admin
-const ADMIN_CREDENTIALS = [
-  { username: 'admin1', password: 'senha123' },
-  { username: 'admin2', password: 'aqua2024' }
-];
+// Alternar visibilidade da senha
+const toggleBtn = document.getElementById('toggleBtn');
+const passwordInput = document.getElementById('password');
 
-let isLoggedIn = false;
-let allClients = [];
-let deleteTarget = null;
-
-// Default config
-const defaultConfig = { /* ... mesmo objeto ... */ };
-
-// ==================== SDKs ====================
-window.elementSdk.init({ /* ... configuração completa ... */ });
-
-const dataHandler = {
-  onDataChanged(data) {
-    if (isLoggedIn) {
-      allClients = data;
-      renderAll();
-    }
+toggleBtn.addEventListener('click', () => {
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    toggleBtn.textContent = '🙈';
+  } else {
+    passwordInput.type = 'password';
+    toggleBtn.textContent = '👁️';
   }
-};
+});
 
-(async () => {
-  const res = await window.dataSdk.init(dataHandler);
-  if (!res.isOk) console.error('Data SDK init failed');
-})();
+// Simulação de login
+const form = document.getElementById('loginForm');
 
-// ==================== Funções ====================
-function handleLogin(e) { /* ... todo o código da função ... */ }
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-function handleLogout() { /* ... */ }
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
 
-function determineStatus(ph, turbidity, contamination) { /* ... */ }
+  const btn = form.querySelector('button');
+  const originalText = btn.textContent;
 
-function statusLabel(s) { /* ... */ }
+  btn.textContent = 'Entrando...';
+  btn.disabled = true;
 
-function renderAll() { /* ... */ }
+  setTimeout(() => {
+    if (username && password) {
+      alert('✅ Login realizado com sucesso!\n\nBem-vindo ao Painel Administrativo.');
+      // window.location.href = "dashboard.html"; // Descomente quando tiver a página
+    } else {
+      alert('Por favor, preencha todos os campos.');
+    }
 
-function renderSummary() { /* ... */ }
+    btn.textContent = originalText;
+    btn.disabled = false;
+  }, 1500);
+});
 
-function getFilteredClients() { /* ... */ }
-
-function renderTable() { /* ... */ }
-
-// Event listeners
-document.getElementById('search-input').addEventListener('input', renderTable);
-document.getElementById('filter-status').addEventListener('change', renderTable);
-
-// Modal, Form, Delete, Toast functions...
-function openModal(editId) { /* ... */ }
-function closeModal() { /* ... */ }
-function editClient(id) { openModal(id); }
-
-async function handleSubmit(e) { /* ... */ }
-
-function deleteClient(id) { /* ... */ }
-function closeDelete() { /* ... */ }
-async function confirmDelete() { /* ... */ }
-
-function showToast(msg, type) { /* ... */ }
-
-lucide.createIcons();
+// Suporte para tecla Enter
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    form.dispatchEvent(new Event('submit'));
+  }
+});
