@@ -9,71 +9,56 @@
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="h-full bg-[#0a1321] text-white flex items-center justify-center p-4">
+<body class="h-full bg-[#0a1321] text-white flex items-center justify-center min-h-screen p-4">
 
-  <div class="w-full max-w-4xl grid md:grid-cols-2 gap-12 items-center">
-
-    <!-- Left Side - Form -->
-    <div class="space-y-8">
+  <div class="w-full max-w-md">
+    
+    <!-- Cabeçalho -->
+    <div class="flex items-center gap-3 mb-10">
+      <div class="w-11 h-11 bg-emerald-500 rounded-2xl flex items-center justify-center">
+        <i data-lucide="droplets" class="w-7 h-7 text-white"></i>
+      </div>
       <div>
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center">
-            <i data-lucide="droplets" class="w-6 h-6 text-white"></i>
-          </div>
-          <span class="text-2xl font-bold">AcquaSafe Monitor</span>
-        </div>
-        
-        <h2 class="text-2xl font-semibold mb-1">Administração</h2>
-        <p class="text-slate-400">Entre com suas credenciais</p>
+        <span class="text-2xl font-bold">AcquaSafe Monitor</span>
+      </div>
+    </div>
+
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold mb-2">Administração</h1>
+      <p class="text-slate-400">Entre com suas credenciais</p>
+    </div>
+
+    <!-- Formulário -->
+    <form onsubmit="handleLogin(event)" class="space-y-6">
+      <div>
+        <label class="block text-sm text-slate-400 mb-2">Usuário ou E-mail</label>
+        <input type="text" value="admin@exemplo.com" 
+               class="w-full px-5 py-4 bg-white text-gray-900 rounded-2xl border border-transparent focus:border-emerald-500 focus:outline-none text-base">
       </div>
 
-      <form onsubmit="handleLogin(event)" class="space-y-6">
-        <div>
-          <label class="block text-sm text-slate-400 mb-2">Usuário ou E-mail</label>
-          <input type="text" id="user" 
-                 class="w-full px-5 py-4 bg-white text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                 placeholder="admin@exemplo.com" value="admin@exemplo.com" required>
-        </div>
+      <div>
+        <label class="block text-sm text-slate-400 mb-2">Senha</label>
+        <input type="password" value="123456" 
+               class="w-full px-5 py-4 bg-white text-gray-900 rounded-2xl border border-transparent focus:border-emerald-500 focus:outline-none text-base">
+      </div>
 
-        <div>
-          <label class="block text-sm text-slate-400 mb-2">Senha</label>
-          <input type="password" id="pass" 
-                 class="w-full px-5 py-4 bg-white text-gray-900 rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                 placeholder="••••••••" required>
-        </div>
+      <div class="flex items-center justify-between text-sm">
+        <label class="flex items-center gap-2 cursor-pointer text-slate-400">
+          <input type="checkbox" checked class="w-4 h-4 accent-emerald-500">
+          Lembrar-me
+        </label>
+        <a href="#" class="text-emerald-400 hover:text-emerald-300">Esqueceu a senha?</a>
+      </div>
 
-        <div class="flex items-center justify-between">
-          <label class="flex items-center gap-2 text-sm text-slate-400 cursor-pointer">
-            <input type="checkbox" class="w-4 h-4 accent-emerald-500">
-            Lembrar-me
-          </label>
-          <a href="#" class="text-emerald-400 hover:text-emerald-300 text-sm">Esqueceu a senha?</a>
-        </div>
-
-        <button type="submit"
-                class="w-full bg-emerald-500 hover:bg-emerald-600 py-4 rounded-2xl font-semibold text-lg transition-all">
-          Entrar
-        </button>
-      </form>
-
-      <p class="text-center text-slate-500 text-xs">
-        © 2026 Sistema Administrativo
-      </p>
-    </div>
-
-    <!-- Right Side - Visual -->
-    <div class="hidden md:flex flex-col items-center justify-center text-center">
-      <h1 class="text-5xl font-bold mb-4">AcquaSafe Monitor</h1>
-      <p class="text-slate-400 text-lg max-w-xs mb-10">
-        Sistema de monitoramento de qualidade da água para agricultores
-      </p>
-      
-      <button onclick="alert('Redirecionando para o Painel Admin...')" 
-              class="bg-emerald-500 hover:bg-emerald-600 px-10 py-4 rounded-2xl flex items-center gap-3 text-lg font-semibold shadow-xl shadow-emerald-500/30 transition-all">
-        <i data-lucide="shield" class="w-6 h-6"></i>
-        Acessar Painel Admin
+      <button type="submit" 
+              class="w-full bg-emerald-500 hover:bg-emerald-600 py-4 rounded-2xl font-semibold text-lg transition-all">
+        Entrar
       </button>
-    </div>
+    </form>
+
+    <p class="text-center text-slate-500 text-xs mt-10">
+      © 2026 AcquaSafe - Sistema Administrativo
+    </p>
   </div>
 
   <script>
@@ -81,8 +66,7 @@
 
     function handleLogin(e) {
       e.preventDefault();
-      alert("✅ Login realizado com sucesso! (Simulação)");
-      // window.location.href = "dashboard.html";
+      alert("Login realizado com sucesso! (Simulação)");
     }
   </script>
 </body>
