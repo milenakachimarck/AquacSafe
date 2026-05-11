@@ -1,9 +1,11 @@
+
 // State
 let sensors = [];
 let deleteTarget = null;
 
 const defaultConfig =
 {
+
   page_title: 'Painel Administrativo',
   system_name: 'AgroÁgua Monitor',
   background_color: '#0f1a2e',
@@ -16,7 +18,6 @@ const defaultConfig =
 }
 ;
 
-// Funções auxiliares
 function getStatus(ph, turbidity, temp) {
   if (ph < 5.5 || ph > 8.5 || turbidity > 50 || temp > 40) return 'critical';
   if (ph < 6.0 || ph > 8.0 || turbidity > 25 || temp > 35) return 'alert';
