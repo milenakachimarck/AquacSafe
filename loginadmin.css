@@ -1,0 +1,70 @@
+* {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.status-critical {
+  background: #ff4d4f22;
+  color: #ff6b6b;
+  border: 1px solid #ff4d4f44;
+}
+
+.status-warning {
+  background: #faad1422;
+  color: #ffc53d;
+  border: 1px solid #faad1444;
+}
+
+.status-ok {
+  background: #52c41a22;
+  color: #73d13d;
+  border: 1px solid #52c41a44;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity:0; transform:translateY(-20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+input, select, textarea {
+  background: #1a2332 !important;
+  border: 1px solid #2a3a4a;
+  color: #e0e8f0;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px #0ea5e922;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1520;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a3a4a;
+  border-radius: 3px;
+}
+
+body {
+  box-sizing: border-box;
+}
