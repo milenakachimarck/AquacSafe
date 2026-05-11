@@ -3,200 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AquaField Admin</title>
+  <title>AcquaSafe Monitor - Admin</title>
   
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="h-full bg-[#0d1520] text-[#e0e8f0] overflow-auto">
-  <div id="app" class="h-full w-full flex flex-col">
+<body class="h-full bg-[#0a1321] text-white flex items-center justify-center overflow-auto">
 
-    <!-- Login Screen -->
-    <div id="login-screen" class="h-full w-full flex items-center justify-center p-4 animate-[slideIn_0.5s_ease]">
-      <div class="w-full max-w-md">
-        <div class="glass rounded-2xl p-8 border border-[#1a2a3a]">
-          <div class="flex justify-center mb-6">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0ea5e9] to-[#06b6d4] flex items-center justify-center">
-              <i data-lucide="droplets" class="w-7 h-7 text-white"></i>
-            </div>
-          </div>
-          <h1 class="text-2xl font-bold text-white text-center mb-2">AquaField</h1>
-          <p class="text-sm text-[#6b8299] text-center mb-8">Admin - Monitoramento de Água</p>
-          
-          <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
-            <div>
-              <label for="login-user" class="block text-xs text-[#6b8299] mb-2">Usuário</label>
-              <input id="login-user" type="text" required class="w-full px-4 py-3 rounded-lg text-sm" placeholder="Digite seu usuário">
-            </div>
-            <div>
-              <label for="login-pass" class="block text-xs text-[#6b8299] mb-2">Senha</label>
-              <input id="login-pass" type="password" required class="w-full px-4 py-3 rounded-lg text-sm" placeholder="Digite sua senha">
-            </div>
-            <div id="login-error" class="hidden p-3 rounded-lg bg-[#ff4d4f22] border border-[#ff4d4f44] text-xs text-[#ff6b6b]"></div>
-            
-            <button type="submit" id="login-btn" class="w-full py-3 rounded-lg bg-gradient-to-r from-[#0ea5e9] to-[#06b6d4] hover:from-[#0284c7] hover:to-[#0891b2] text-white font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2">
-              <i data-lucide="log-in" class="w-4 h-4"></i> Entrar
-            </button>
-          </form>
-          
-          <p class="text-xs text-[#6b8299] text-center mt-6">Sistema restrito para administradores</p>
-        </div>
+  <div class="w-full max-w-md px-6">
+    <!-- Logo + Header -->
+    <div class="flex flex-col items-center mb-10">
+      <div class="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30">
+        <i data-lucide="droplets" class="w-9 h-9 text-white"></i>
       </div>
+      <h1 class="text-3xl font-bold tracking-tight">AcquaSafe Monitor</h1>
+      <p class="text-slate-400 text-center mt-2">Sistema de monitoramento de qualidade da água para agricultores</p>
     </div>
 
-    <!-- Admin Dashboard -->
-    <div id="admin-screen" class="hidden h-full w-full flex flex-col">
-      <!-- Header -->
-      <header class="flex items-center justify-between px-6 py-4 border-b border-[#1a2a3a]">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#0ea5e9] to-[#06b6d4] flex items-center justify-center">
-            <i data-lucide="droplets" class="w-5 h-5 text-white"></i>
-          </div>
-          <div>
-            <h1 id="main-title" class="text-lg font-bold text-white">AquaField Admin</h1>
-            <p id="subtitle" class="text-xs text-[#6b8299]">Monitoramento de qualidade da água</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div id="stats-bar" class="hidden md:flex items-center gap-4 mr-4 text-xs"></div>
-          <button onclick="openModal()" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0ea5e9] hover:bg-[#0284c7] text-white text-sm font-medium transition-colors">
-            <i data-lucide="plus" class="w-4 h-4"></i> Novo Cliente
-          </button>
-          <button onclick="handleLogout()" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[#1a2a3a] text-[#6b8299] hover:text-[#ff6b6b] text-sm transition-colors" title="Sair">
-            <i data-lucide="log-out" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </header>
-
-      <!-- Content -->
-      <main class="flex-1 overflow-auto p-6">
-        <!-- Summary Cards -->
-        <div id="summary-cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"></div>
-
-        <!-- Search & Filter -->
-        <div class="flex flex-col sm:flex-row gap-3 mb-4">
-          <div class="relative flex-1">
-            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6b8299]"></i>
-            <input type="text" id="search-input" placeholder="Buscar agricultor ou localização..." class="w-full pl-10 pr-4 py-2.5 rounded-lg text-sm">
-          </div>
-          <select id="filter-status" class="px-4 py-2.5 rounded-lg text-sm cursor-pointer">
-            <option value="all">Todos os Status</option>
-            <option value="normal">Normal</option>
-            <option value="alerta">Alerta</option>
-            <option value="critico">Crítico</option>
-          </select>
-        </div>
-
-        <!-- Table -->
-        <div class="glass rounded-xl overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="text-[#6b8299] text-xs uppercase border-b border-[#1a2a3a]">
-                  <th class="text-left px-5 py-3 font-medium">Agricultor</th>
-                  <th class="text-left px-5 py-3 font-medium">Localização</th>
-                  <th class="text-left px-5 py-3 font-medium">Cultura</th>
-                  <th class="text-left px-5 py-3 font-medium">pH</th>
-                  <th class="text-left px-5 py-3 font-medium">Turbidez</th>
-                  <th class="text-left px-5 py-3 font-medium">Contaminação</th>
-                  <th class="text-left px-5 py-3 font-medium">Status</th>
-                  <th class="text-left px-5 py-3 font-medium">Última Verif.</th>
-                  <th class="text-center px-5 py-3 font-medium">Ações</th>
-                </tr>
-              </thead>
-              <tbody id="clients-table"></tbody>
-            </table>
-          </div>
-          <div id="empty-state" class="hidden flex-col items-center justify-center py-16 text-[#6b8299]">
-            <i data-lucide="inbox" class="w-12 h-12 mb-3 opacity-40"></i>
-            <p class="text-sm">Nenhum cliente cadastrado ainda</p>
-            <p class="text-xs mt-1">Clique em "Novo Cliente" para começar</p>
-          </div>
-        </div>
-      </main>
-
-      <!-- Modal -->
-      <div id="modal-overlay" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4" onclick="if(event.target===this)closeModal()">
-        <div class="bg-[#131f2e] rounded-2xl w-full max-w-lg max-h-[90%] overflow-auto fade-in border border-[#1a2a3a]">
-          <div class="flex items-center justify-between px-6 py-4 border-b border-[#1a2a3a]">
-            <h2 id="modal-title" class="text-base font-semibold text-white">Novo Cliente</h2>
-            <button onclick="closeModal()" class="text-[#6b8299] hover:text-white transition-colors">
-              <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-          </div>
-          <form id="client-form" class="p-6 space-y-4" onsubmit="handleSubmit(event)">
-            <input type="hidden" id="form-mode" value="create">
-            <input type="hidden" id="form-edit-id" value="">
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label for="f-name" class="block text-xs text-[#6b8299] mb-1">Nome do Agricultor</label>
-                <input id="f-name" required class="w-full px-3 py-2.5 rounded-lg text-sm">
-              </div>
-              <div>
-                <label for="f-location" class="block text-xs text-[#6b8299] mb-1">Localização</label>
-                <input id="f-location" required class="w-full px-3 py-2.5 rounded-lg text-sm">
-              </div>
-              <div>
-                <label for="f-crop" class="block text-xs text-[#6b8299] mb-1">Tipo de Cultura</label>
-                <input id="f-crop" required class="w-full px-3 py-2.5 rounded-lg text-sm" placeholder="Ex: Soja, Milho...">
-              </div>
-              <div>
-                <label for="f-ph" class="block text-xs text-[#6b8299] mb-1">Nível de pH</label>
-                <input id="f-ph" type="number" step="0.1" min="0" max="14" required class="w-full px-3 py-2.5 rounded-lg text-sm">
-              </div>
-              <div>
-                <label for="f-turbidity" class="block text-xs text-[#6b8299] mb-1">Turbidez (NTU)</label>
-                <input id="f-turbidity" type="number" step="0.1" min="0" required class="w-full px-3 py-2.5 rounded-lg text-sm">
-              </div>
-              <div>
-                <label for="f-contamination" class="block text-xs text-[#6b8299] mb-1">Contaminação</label>
-                <select id="f-contamination" required class="w-full px-3 py-2.5 rounded-lg text-sm">
-                  <option value="nenhuma">Nenhuma</option>
-                  <option value="baixa">Baixa</option>
-                  <option value="moderada">Moderada</option>
-                  <option value="alta">Alta</option>
-                </select>
-              </div>
-            </div>
-            
-            <div>
-              <label for="f-notes" class="block text-xs text-[#6b8299] mb-1">Observações</label>
-              <textarea id="f-notes" rows="2" class="w-full px-3 py-2.5 rounded-lg text-sm resize-none"></textarea>
-            </div>
-            
-            <div class="flex justify-end gap-3 pt-2">
-              <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-lg text-sm text-[#6b8299] hover:text-white border border-[#2a3a4a] hover:border-[#3a4a5a] transition-colors">Cancelar</button>
-              <button type="submit" id="form-submit-btn" class="px-5 py-2.5 rounded-lg text-sm bg-[#0ea5e9] hover:bg-[#0284c7] text-white font-medium transition-colors">Salvar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <!-- Delete Confirm -->
-      <div id="delete-overlay" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4" onclick="if(event.target===this)closeDelete()">
-        <div class="bg-[#131f2e] rounded-2xl w-full max-w-sm fade-in border border-[#1a2a3a] p-6 text-center">
-          <div class="w-12 h-12 rounded-full bg-[#ff4d4f22] flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="alert-triangle" class="w-6 h-6 text-[#ff6b6b]"></i>
-          </div>
-          <h3 class="text-white font-semibold mb-2">Confirmar Exclusão</h3>
-          <p class="text-sm text-[#6b8299] mb-6">Tem certeza que deseja remover este cliente? Esta ação não pode ser desfeita.</p>
-          <div class="flex gap-3 justify-center">
-            <button onclick="closeDelete()" class="px-4 py-2.5 rounded-lg text-sm border border-[#2a3a4a] text-[#6b8299] hover:text-white transition-colors">Cancelar</button>
-            <button onclick="confirmDelete()" id="delete-confirm-btn" class="px-5 py-2.5 rounded-lg text-sm bg-[#ff4d4f] hover:bg-[#d9363e] text-white font-medium transition-colors">Excluir</button>
-          </div>
-        </div>
-      </div>
+    <!-- Botão Principal Verde -->
+    <div class="mb-12">
+      <button onclick="showLoginForm()" 
+              class="w-full bg-emerald-500 hover:bg-emerald-600 transition-all duration-300 text-white font-semibold py-4 px-8 rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-emerald-500/30 text-lg">
+        <i data-lucide="shield" class="w-6 h-6"></i>
+        Acessar Painel Admin
+      </button>
     </div>
+
+    <!-- Formulário de Login (inicialmente escondido) -->
+    <div id="login-form-container" class="hidden bg-[#13223a] border border-slate-700 rounded-3xl p-8">
+      <h2 class="text-xl font-semibold text-center mb-6">Entre com suas credenciais</h2>
+      
+      <form id="admin-login-form" onsubmit="handleAdminLogin(event)" class="space-y-5">
+        <div>
+          <label class="block text-sm text-slate-400 mb-2">Usuário ou E-mail</label>
+          <input type="text" id="admin-user" 
+                 class="w-full px-5 py-3.5 bg-[#0f1c2e] border border-slate-600 rounded-2xl focus:border-emerald-500 focus:outline-none text-white"
+                 placeholder="admin@exemplo.com" required>
+        </div>
+        
+        <div>
+          <label class="block text-sm text-slate-400 mb-2">Senha</label>
+          <input type="password" id="admin-pass" 
+                 class="w-full px-5 py-3.5 bg-[#0f1c2e] border border-slate-600 rounded-2xl focus:border-emerald-500 focus:outline-none text-white"
+                 placeholder="••••••••" required>
+        </div>
+
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 accent-emerald-500">
+            <span class="text-slate-400">Lembrar-me</span>
+          </label>
+          <a href="#" class="text-emerald-400 hover:text-emerald-300">Esqueceu a senha?</a>
+        </div>
+
+        <button type="submit" 
+                class="w-full bg-emerald-500 hover:bg-emerald-600 py-4 rounded-2xl font-semibold text-lg transition-all mt-4">
+          Entrar
+        </button>
+      </form>
+    </div>
+
+    <p class="text-center text-slate-500 text-xs mt-10">
+      © 2026 AcquaSafe - Sistema Administrativo
+    </p>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+
+    function showLoginForm() {
+      document.getElementById('login-form-container').classList.remove('hidden');
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('admin-user').value;
+      const pass = document.getElementById('admin-pass').value;
+
+      if (user && pass) {
+        alert("Login realizado com sucesso! (Simulação)");
+        // Aqui você pode redirecionar para o dashboard real
+        // window.location.href = "admin-dashboard.html";
+      } else {
+        alert("Preencha todos os campos");
+      }
+    }
+  </script>
 </body>
 </html>
