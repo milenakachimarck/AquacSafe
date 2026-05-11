@@ -93,18 +93,30 @@
           <section>
             <h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Forma de Pagamento</h2>
             <div class="grid grid-cols-3 gap-3 mb-5">
-              <button class="payment-method active flex flex-col items-center gap-2 p-4 rounded-xl border-2 border-cyan-500 bg-cyan-500/10" data-method="card" onclick="selectMethod(this)">
-                <i data-lucide="credit-card" class="w-6 h-6 text-cyan-400"></i>
-                <span class="text-xs font-semibold">Cartão</span>
-              </button>
-              <button class="payment-method flex flex-col items-center gap-2 p-4 rounded-xl border border-slate-700 bg-slate-800/50 hover:border-slate-500" data-method="pix" onclick="selectMethod(this)">
-                <i data-lucide="qr-code" class="w-6 h-6 text-slate-300"></i>
-                <span class="text-xs font-semibold">PIX</span>
-              </button>
-              <button class="payment-method flex flex-col items-center gap-2 p-4 rounded-xl border border-slate-700 bg-slate-800/50 hover:border-slate-500" data-method="boleto" onclick="selectMethod(this)">
-                <i data-lucide="file-text" class="w-6 h-6 text-slate-300"></i>
-                <span class="text-xs font-semibold">Boleto</span>
-              </button>
+              <button onclick="selectMethod(this)" data-method="card" 
+            class="payment-method active flex flex-col items-center gap-3 p-6 rounded-2xl border-2 border-cyan-500 bg-cyan-500/10">
+      <img src="https://i.imgur.com/5Z8vL9k.png" 
+           alt="Cartão" 
+           class="w-16 h-10 object-contain">
+      <span class="font-semibold text-sm">Cartão</span>
+    </button>
+             <!-- PIX -->
+    <button onclick="selectMethod(this)" data-method="pix" 
+            class="payment-method flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-700 hover:border-slate-500">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Pix_logo.svg/1024px-Pix_logo.svg.png" 
+           alt="PIX" 
+           class="w-16 h-10 object-contain brightness-110">
+      <span class="font-semibold text-sm">PIX</span>
+    </button>
+
+    <!-- Boleto -->
+    <button onclick="selectMethod(this)" data-method="boleto" 
+            class="payment-method flex flex-col items-center gap-3 p-6 rounded-2xl border border-slate-700 hover:border-slate-500">
+      <img src="https://i.imgur.com/8v4vJ0L.png" 
+           alt="Boleto" 
+           class="w-16 h-10 object-contain">
+      <span class="font-semibold text-sm">Boleto</span>
+    </button>
             </div>
 
             <!-- Card Form -->
