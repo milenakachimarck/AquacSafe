@@ -1,68 +1,171 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-}
-
-body {
   font-family: 'DM Sans', sans-serif;
 }
 
-.font-heading {
-  font-family: 'Outfit', sans-serif;
+body {
+  box-sizing: border-box;
 }
 
-/* Animações */
-@keyframes float {
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-}
-
-@keyframes pulse-ring {
-  0%{transform:scale(0.8);opacity:1}
-  100%{transform:scale(2.2);opacity:0}
-}
-
-@keyframes fade-up {
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.animate-float { animation: float 4s ease-in-out infinite; }
-.animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
-.animate-fade-up { animation: fade-up 0.8s ease-out forwards; }
-
-.delay-1 { animation-delay: 0.15s; opacity: 0; }
-.delay-2 { animation-delay: 0.3s; opacity: 0; }
-.delay-3 { animation-delay: 0.45s; opacity: 0; }
-.delay-4 { animation-delay: 0.6s; opacity: 0; }
-
-.gradient-text {
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4, #10b981);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.water-bg {
-  background: linear-gradient(180deg, #0c1a2e 0%, #0f2b4a 40%, #134e6f 100%);
-}
-
-.glass {
-  background: rgba(255,255,255,0.05);
+/* Glass Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Melhorias extras */
-.glass:hover {
-  border-color: rgba(34, 211, 238, 0.3);
+.glow-border {
+  border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
-a {
-  text-decoration: none;
+/* Pulse Animation */
+.pulse-dot {
+  animation: pulse-anim 2s infinite;
+}
+
+@keyframes pulse-anim {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.5; 
+    transform: scale(1.3); 
+  }
+}
+
+/* Hover Effect */
+.info-card-hover {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.info-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Chart Container */
+.chart-wrapper {
+  position: relative;
+  width: 100%;
+  max-height: 280px;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+    background-color: #1e40af;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+nav a.active {
+    color: #dbeafe;
+    font-weight: 600;
+    border-bottom: 3px solid #60a5fa;
+}
+
+/* Cabeçalhos */
+header h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1e2937;
+}
+
+/* Tabelas */
+.table-container {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    background-color: #1e40af;
+    color: white;
+}
+
+td {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Inputs de busca */
+input[type="text"] {
+    width: 320px;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Botões */
+.btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-clear {
+    background-color: #e2e8f0;
+    color: #475569;
+}
+
+.btn-clear:hover {
+    background-color: #cbd5e1;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    input[type="text"] {
+        width: 100%;
+    }
+    
+    nav .flex {
+        flex-direction: column;
+        gap: 12px;
+    }
 }
