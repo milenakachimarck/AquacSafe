@@ -125,15 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-// Botão "Se junte a nós" com efeito extra
-document.querySelectorAll('a[href="login.html"]').forEach(btn => {
-  btn.addEventListener('mouseenter', () => {
-    btn.style.transform = 'scale(1.05)';
-  });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = 'scale(1)';
-  });
-});
+
     // Criar ícones do Lucide
     lucide.createIcons();
 });
