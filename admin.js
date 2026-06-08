@@ -1,45 +1,61 @@
-// Login simples
+// ======================
+// PROTEÇÃO DA ÁREA ADMIN
+// ======================
 
-function loginAdmin(){
+document.addEventListener("DOMContentLoaded", () => {
 
-    const usuario =
-        document.getElementById("usuario").value;
+    const estaNaPaginaAdmin =
+        document.getElementById("listaClientes") !== null;
 
-    const senha =
-        document.getElementById("senha").value;
+    if (estaNaPaginaAdmin) {
 
-    if(usuario === "admin" && senha === "1234"){
+        const logado = localStorage.getItem("adminLogado");
 
-        localStorage.setItem("adminLogado","true");
+        if (logado !== "true") {
+            window.location.href = "login-admin.html";
+            return;
+        }
+
+        renderDoencas();
+        renderClientes();
+    }
+});
+
+// ======================
+// LOGIN
+// ======================
+
+function loginAdmin() {
+
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value.trim();
+
+    if (usuario === "admin" && senha === "1234") {
+
+        localStorage.setItem("adminLogado", "true");
 
         window.location.href = "admin.html";
 
-    }else{
+    } else {
 
         alert("Usuário ou senha inválidos.");
-
     }
 }
 
-function logout(){
+// ======================
+// LOGOUT
+// ======================
+
+function logout() {
 
     localStorage.removeItem("adminLogado");
 
     window.location.href = "login-admin.html";
 }
 
-if(window.location.pathname.includes("admin.html")){
-
-    if(localStorage.getItem("adminLogado") !== "true"){
-
-        window.location.href = "login-admin.html";
-
-    }
-}
-
-// ------------------
-// Doenças
-// ------------------
+// ======================
+// DOENÇAS
+// ======================
 
 let doencas = [
     "Mofo-branco",
@@ -47,20 +63,19 @@ let doencas = [
     "Míldio"
 ];
 
-function renderDoencas(){
+function renderDoencas() {
 
-    const lista =
-        document.getElementById("listaDoencas");
+    const lista = document.getElementById("listaDoencas");
 
-    if(!lista) return;
+    if (!lista) return;
 
     lista.innerHTML = "";
 
-    doencas.forEach((doenca,index)=>{
+    doencas.forEach((doenca, index) => {
 
         lista.innerHTML += `
             <li>
-                ${doenca}
+                <span>${doenca}</span>
 
                 <button
                     class="btn-gradient"
@@ -72,56 +87,61 @@ function renderDoencas(){
     });
 }
 
-function adicionarDoenca(){
+function adicionarDoenca() {
 
-    const campo =
-        document.getElementById("novaDoenca");
+    const campo = document.getElementById("novaDoenca");
 
-    if(campo.value.trim() === "") return;
+    if (!campo) return;
 
-    doencas.push(campo.value);
+    const valor = campo.value.trim();
+
+    if (valor === "") {
+        alert("Digite o nome da doença.");
+        return;
+    }
+
+    doencas.push(valor);
 
     campo.value = "";
 
     renderDoencas();
 }
 
-function removerDoenca(index){
+function removerDoenca(index) {
 
-    doencas.splice(index,1);
+    doencas.splice(index, 1);
 
     renderDoencas();
 }
 
-// ------------------
-// Clientes
-// ------------------
+// ======================
+// CLIENTES
+// ======================
 
 const clientes = [
     {
-        nome:"Fazenda Esperança",
-        status:"Pago"
+        nome: "Fazenda Esperança",
+        status: "Pago"
     },
     {
-        nome:"Agro Silva",
-        status:"Inadimplente"
+        nome: "Agro Silva",
+        status: "Inadimplente"
     },
     {
-        nome:"Campo Verde",
-        status:"Pago"
+        nome: "Campo Verde",
+        status: "Pago"
     }
 ];
 
-function renderClientes(){
+function renderClientes() {
 
-    const lista =
-        document.getElementById("listaClientes");
+    const lista = document.getElementById("listaClientes");
 
-    if(!lista) return;
+    if (!lista) return;
 
     lista.innerHTML = "";
 
-    clientes.forEach(cliente=>{
+    clientes.forEach((cliente) => {
 
         lista.innerHTML += `
             <li>
@@ -134,27 +154,22 @@ function renderClientes(){
 
                     <span class="${
                         cliente.status === "Pago"
-                        ? "status-ok"
-                        : "status"
+                            ? "status-ok"
+                            : "status"
                     }">
-
                         ${cliente.status}
-
                     </span>
 
                     ${
                         cliente.status === "Inadimplente"
-                        ?
-
-                        `<button
-                            class="btn-gradient"
-                            onclick="bloquearCliente('${cliente.nome}')">
-                            Bloquear
-                        </button>`
-
-                        :
-
-                        ""
+                            ? `
+                                <button
+                                    class="btn-gradient"
+                                    onclick="bloquearCliente('${cliente.nome}')">
+                                    Bloquear
+                                </button>
+                              `
+                            : ""
                     }
 
                 </div>
@@ -164,12 +179,7 @@ function renderClientes(){
     });
 }
 
-function bloquearCliente(nome){
+function bloquearCliente(nome) {
 
-    alert(
-        `${nome} foi bloqueado por falta de pagamento.`
-    );
+    alert(`${nome} foi bloqueado por falta de pagamento.`);
 }
-
-renderDoencas();
-renderClientes();
