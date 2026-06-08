@@ -31,41 +31,41 @@ function applyConfig(config) {
 }
 
 // Inicialização do SDK
-if (window.elementSdk) {
-    window.elementSdk.init({
+if (window.element) {
+    window.element.init({
         defaultConfig,
         onConfigChange: async (config) => applyConfig(config),
         mapToCapabilities: (config) => ({
             recolorables: [
                 { 
                     get: () => config.background_color || defaultConfig.background_color, 
-                    set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } 
+                    set: (v) => { config.background_color = v; window.element.setConfig({ background_color: v }); } 
                 },
                 { 
                     get: () => config.surface_color || defaultConfig.surface_color, 
-                    set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } 
+                    set: (v) => { config.surface_color = v; window.element.setConfig({ surface_color: v }); } 
                 },
                 { 
                     get: () => config.text_color || defaultConfig.text_color, 
-                    set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } 
+                    set: (v) => { config.text_color = v; window.element.setConfig({ text_color: v }); } 
                 },
                 { 
                     get: () => config.primary_action_color || defaultConfig.primary_action_color, 
-                    set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } 
+                    set: (v) => { config.primary_action_color = v; window.element.setConfig({ primary_action_color: v }); } 
                 },
                 { 
                     get: () => config.secondary_action_color || defaultConfig.secondary_action_color, 
-                    set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } 
+                    set: (v) => { config.secondary_action_color = v; window.element.setConfig({ secondary_action_color: v }); } 
                 }
             ],
             borderables: [],
             fontEditable: {
                 get: () => config.font_family || defaultConfig.font_family,
-                set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+                set: (v) => { config.font_family = v; window.element.setConfig({ font_family: v }); }
             },
             fontSizeable: {
                 get: () => config.font_size || defaultConfig.font_size,
-                set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+                set: (v) => { config.font_size = v; window.element.setConfig({ font_size: v }); }
             }
         }),
         mapToEditPanelValues: (config) => new Map([
