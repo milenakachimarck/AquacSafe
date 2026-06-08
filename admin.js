@@ -1,68 +1,175 @@
-// Lista inicial de doenças e clientes
-let doencas = ["Mofo-branco", "Antracnose", "Oídio"];
-let clientes = [
-    { nome: "Cliente A", pago: true },
-    { nome: "Cliente B", pago: false },
-    { nome: "Cliente C", pago: true }
-];
+// Login simples
 
-// Função para adicionar doença
-function adicionarDoenca() {
-    const input = document.getElementById("novaDoencaInput");
-    const nome = input.value.trim();
-    if (nome && !doencas.includes(nome)) {
-        doencas.push(nome);
-        input.value = "";
-        renderDoencas();
-    } else {
-        alert("Doença inválida ou já existente!");
+function loginAdmin(){
+
+    const usuario =
+        document.getElementById("usuario").value;
+
+    const senha =
+        document.getElementById("senha").value;
+
+    if(usuario === "admin" && senha === "1234"){
+
+        localStorage.setItem("adminLogado","true");
+
+        window.location.href = "admin.html";
+
+    }else{
+
+        alert("Usuário ou senha inválidos.");
+
     }
 }
 
-// Função para excluir doença
-function excluirDoenca(nome) {
-    doencas = doencas.filter(d => d !== nome);
+function logout(){
+
+    localStorage.removeItem("adminLogado");
+
+    window.location.href = "login-admin.html";
+}
+
+if(window.location.pathname.includes("admin.html")){
+
+    if(localStorage.getItem("adminLogado") !== "true"){
+
+        window.location.href = "login-admin.html";
+
+    }
+}
+
+// ------------------
+// Doenças
+// ------------------
+
+let doencas = [
+    "Mofo-branco",
+    "Antracnose",
+    "Míldio"
+];
+
+function renderDoencas(){
+
+    const lista =
+        document.getElementById("listaDoencas");
+
+    if(!lista) return;
+
+    lista.innerHTML = "";
+
+    doencas.forEach((doenca,index)=>{
+
+        lista.innerHTML += `
+            <li>
+                ${doenca}
+
+                <button
+                    class="btn-gradient"
+                    onclick="removerDoenca(${index})">
+                    Excluir
+                </button>
+            </li>
+        `;
+    });
+}
+
+function adicionarDoenca(){
+
+    const campo =
+        document.getElementById("novaDoenca");
+
+    if(campo.value.trim() === "") return;
+
+    doencas.push(campo.value);
+
+    campo.value = "";
+
     renderDoencas();
 }
 
-// Renderizar lista de doenças
-function renderDoencas() {
-    const ul = document.getElementById("listaDoencas");
-    ul.innerHTML = "";
-    doencas.forEach(d => {
-        const li = document.createElement("li");
-        li.textContent = d;
-        const btn = document.createElement("button");
-        btn.textContent = "Excluir";
-        btn.onclick = () => excluirDoenca(d);
-        li.appendChild(btn);
-        ul.appendChild(li);
+function removerDoenca(index){
+
+    doencas.splice(index,1);
+
+    renderDoencas();
+}
+
+// ------------------
+// Clientes
+// ------------------
+
+const clientes = [
+    {
+        nome:"Fazenda Esperança",
+        status:"Pago"
+    },
+    {
+        nome:"Agro Silva",
+        status:"Inadimplente"
+    },
+    {
+        nome:"Campo Verde",
+        status:"Pago"
+    }
+];
+
+function renderClientes(){
+
+    const lista =
+        document.getElementById("listaClientes");
+
+    if(!lista) return;
+
+    lista.innerHTML = "";
+
+    clientes.forEach(cliente=>{
+
+        lista.innerHTML += `
+            <li>
+
+                <div>
+                    <strong>${cliente.nome}</strong>
+                </div>
+
+                <div class="acoes">
+
+                    <span class="${
+                        cliente.status === "Pago"
+                        ? "status-ok"
+                        : "status"
+                    }">
+
+                        ${cliente.status}
+
+                    </span>
+
+                    ${
+                        cliente.status === "Inadimplente"
+                        ?
+
+                        `<button
+                            class="btn-gradient"
+                            onclick="bloquearCliente('${cliente.nome}')">
+                            Bloquear
+                        </button>`
+
+                        :
+
+                        ""
+                    }
+
+                </div>
+
+            </li>
+        `;
     });
 }
 
-// Renderizar lista de clientes
-function renderClientes() {
-    const ul = document.getElementById("listaClientes");
-    ul.innerHTML = "";
-    clientes.forEach(c => {
-        const li = document.createElement("li");
-        li.textContent = c.nome + (c.pago ? " (Pago)" : " (Não pagou)");
-        if (!c.pago) {
-            const btn = document.createElement("button");
-            btn.textContent = "Bloquear App";
-            btn.onclick = () => bloquearCliente(c.nome);
-            li.appendChild(btn);
-        }
-        ul.appendChild(li);
-    });
+function bloquearCliente(nome){
+
+    alert(
+        `${nome} foi bloqueado por falta de pagamento.`
+    );
 }
 
-// Função para bloquear cliente
-function bloquearCliente(nome) {
-    alert(`O cliente "${nome}" foi bloqueado no app!`);
-    // Aqui você pode integrar com backend para bloquear de verdade
-}
-
-// Inicializar listas
 renderDoencas();
 renderClientes();

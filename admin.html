@@ -1,34 +1,46 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Controle de Água</title>
+    <title>Painel Admin</title>
     <link rel="stylesheet" href="admin.css">
 </head>
-<body>
-    <header>
-        <h1>Página de Administração</h1>
+<body class="admin-bg">
+
+    <header class="glass-card header-admin">
+        <h1 class="gradient-text">Controle de Água - Administração</h1>
+
+        <button class="btn-gradient" onclick="logout()">
+            Sair
+        </button>
     </header>
 
-    <main>
-        <!-- Gerenciar Doenças -->
-        <section id="doencas-section">
+    <main class="dashboard">
+
+        <section class="glass-card painel">
             <h2>Gerenciar Doenças</h2>
-            <input type="text" id="novaDoencaInput" placeholder="Nome da doença">
-            <button onclick="adicionarDoenca()">Adicionar</button>
-            <ul id="listaDoencas">
-                <!-- Doenças serão listadas aqui -->
-            </ul>
+
+            <div class="add-box">
+                <input
+                    type="text"
+                    id="novaDoenca"
+                    class="input-field"
+                    placeholder="Nova doença">
+
+                <button class="btn-gradient" onclick="adicionarDoenca()">
+                    Adicionar
+                </button>
+            </div>
+
+            <ul id="listaDoencas"></ul>
         </section>
 
-        <!-- Gerenciar Clientes -->
-        <section id="clientes-section">
-            <h2>Gerenciar Clientes</h2>
-            <ul id="listaClientes">
-                <!-- Clientes serão listados aqui -->
-            </ul>
+        <section class="glass-card painel">
+            <h2>Clientes</h2>
+
+            <ul id="listaClientes"></ul>
         </section>
+
     </main>
 
     <script src="admin.js"></script>

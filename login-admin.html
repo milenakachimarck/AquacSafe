@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-bg">
 
+    <div class="login-container glass-card">
+        <h1 class="gradient-text">Painel Administrativo</h1>
+
+        <input
+            type="text"
+            id="usuario"
+            class="input-field"
+            placeholder="Usuário">
+
+        <input
+            type="password"
+            id="senha"
+            class="input-field"
+            placeholder="Senha">
+
+        <button class="btn-gradient" onclick="loginAdmin()">
+            Entrar
+        </button>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
