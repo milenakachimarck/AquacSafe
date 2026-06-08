@@ -183,3 +183,49 @@ function bloquearCliente(nome) {
 
     alert(`${nome} foi bloqueado por falta de pagamento.`);
 }
+function criarContaAdmin(){
+
+    const usuario =
+        document.getElementById("usuario").value.trim();
+
+    const senha =
+        document.getElementById("senha").value.trim();
+
+    if(usuario === "" || senha === ""){
+
+        alert("Preencha usuário e senha.");
+        return;
+    }
+
+    localStorage.setItem("adminUsuario", usuario);
+    localStorage.setItem("adminSenha", senha);
+
+    alert("Conta de administrador criada com sucesso!");
+}
+
+function loginAdmin(){
+
+    const usuario =
+        document.getElementById("usuario").value.trim();
+
+    const senha =
+        document.getElementById("senha").value.trim();
+
+    const usuarioSalvo =
+        localStorage.getItem("adminUsuario");
+
+    const senhaSalva =
+        localStorage.getItem("adminSenha");
+
+    if(usuario === usuarioSalvo &&
+       senha === senhaSalva){
+
+        localStorage.setItem("adminLogado","true");
+
+        window.location.href = "admin.html";
+
+    }else{
+
+        alert("Usuário ou senha inválidos.");
+    }
+}
