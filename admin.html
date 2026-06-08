@@ -1,164 +1,36 @@
-<!doctype html>
-<html lang="pt-BR" class="h-full">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AcquaSafe - Admin</title>
-
-  <script src="script.js"></script>
-</body>
-</html>
-  
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body class="h-full bg-[#0f1a2e] text-[#e8f0e8] overflow-auto">
-  <div id="app" class="w-full h-full flex flex-col">
-    <!-- Navigation -->
-    <nav id="main-nav" class="w-full bg-[#152238] border-b border-[#1e3a5f] px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-[#22c55e] flex items-center justify-center">
-          <i data-lucide="droplets" class="w-5 h-5 text-[#0f1a2e]"></i>
-        </div>
-        <span id="system-name" class="text-lg font-bold text-[#e8f0e8]">AcquaSafe Monitor</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="pulse-dot w-2 h-2 rounded-full bg-[#22c55e] inline-block"></span>
-        <span class="text-sm text-[#8ba8a0]">Sistema Ativo</span>
-      </div>
-    </nav>
-
-    <!-- Page Home -->
-    <div id="page-home" class="flex-1 flex flex-col items-center justify-center gap-8 p-8">
-      <div class="text-center">
-        <h1 id="home-title" class="text-3xl font-bold mb-2">AcquaSafe Monitor</h1>
-        <p class="text-[#8ba8a0]">Sistema de monitoramento de qualidade da água para agricultores</p>
-      </div>
-      <button id="btn-go-admin" class="bg-[#22c55e] hover:bg-[#16a34a] text-[#0f1a2e] font-semibold px-8 py-4 rounded-xl flex items-center gap-3 transition-all hover:scale-105 shadow-lg shadow-[#22c55e]/20">
-        <i data-lucide="shield" class="w-5 h-5"></i>
-        Acessar Painel Admin
-      </button>
-    </div>
-
-
-    <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Controle de Água</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
+    <header>
+        <h1>Página de Administração</h1>
+    </header>
 
-  <div class="login-container">
-    <div class="logo">👨‍💼</div>
-    <h1>Administração</h1>
-    <p>Entre com suas credenciais</p>
+    <main>
+        <!-- Gerenciar Doenças -->
+        <section id="doencas-section">
+            <h2>Gerenciar Doenças</h2>
+            <input type="text" id="novaDoencaInput" placeholder="Nome da doença">
+            <button onclick="adicionarDoenca()">Adicionar</button>
+            <ul id="listaDoencas">
+                <!-- Doenças serão listadas aqui -->
+            </ul>
+        </section>
 
-    <form id="loginForm">
-      <div class="input-group">
-        <label for="username">Usuário ou E-mail</label>
-        <input type="text" id="username" placeholder="admin@exemplo.com" required>
-      </div>
+        <!-- Gerenciar Clientes -->
+        <section id="clientes-section">
+            <h2>Gerenciar Clientes</h2>
+            <ul id="listaClientes">
+                <!-- Clientes serão listados aqui -->
+            </ul>
+        </section>
+    </main>
 
-      <div class="input-group">
-        <label for="password">Senha</label>
-        <div class="password-container">
-          <input type="password" id="password" placeholder="••••••••" required>
-          <button type="button" class="toggle-password" id="toggleBtn">👁️</button>
-        </div>
-      </div>
-
-      <div class="options">
-        <label class="remember">
-          <input type="checkbox" id="remember">
-          Lembrar-me
-        </label>
-        <a href="#" class="forgot">Esqueceu a senha?</a>
-      </div>
-
-      <button type="submit">Entrar</button>
-    </form>
-
-    <div class="footer">
-      © 2026 Sistema Administrativo
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
-  <script src="script.js"></script>
-</body>
-</html>
-
-    <!-- Admin Page -->
-    <div id="page-admin" class="flex-1 flex-col p-6 gap-6 hidden">
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center gap-3">
-          <button id="btn-back" class="p-2 rounded-lg bg-[#1e3a5f] hover:bg-[#2a4a6f] transition">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i>
-          </button>
-          <h1 id="admin-title" class="text-2xl font-bold">Painel Administrativo</h1>
-        </div>
-        <button id="btn-add-sensor" class="bg-[#22c55e] hover:bg-[#16a34a] text-[#0f1a2e] font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition">
-          <i data-lucide="plus" class="w-4 h-4"></i> Novo Sensor
-        </button>
-      </div>
-
-      <!-- Stats -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-        <div class="bg-[#152238] border border-[#1e3a5f] rounded-xl p-4">
-          <div class="flex items-center gap-2 mb-1">
-            <i data-lucide="activity" class="w-4 h-4 text-[#22c55e]"></i>
-            <span class="text-sm text-[#8ba8a0]">Sensores Ativos</span>
-          </div>
-          <p id="stat-active" class="text-2xl font-bold">0</p>
-        </div>
-        <!-- Outros cards de stats... (mantidos iguais) -->
-        <div class="bg-[#152238] border border-[#1e3a5f] rounded-xl p-4">
-          <div class="flex items-center gap-2 mb-1">
-            <i data-lucide="alert-triangle" class="w-4 h-4 text-[#f59e0b]"></i>
-            <span class="text-sm text-[#8ba8a0]">Alertas</span>
-          </div>
-          <p id="stat-alerts" class="text-2xl font-bold text-[#f59e0b]">0</p>
-        </div>
-        <div class="bg-[#152238] border border-[#1e3a5f] rounded-xl p-4">
-          <div class="flex items-center gap-2 mb-1">
-            <i data-lucide="alert-circle" class="w-4 h-4 text-[#ef4444]"></i>
-            <span class="text-sm text-[#8ba8a0]">Críticos</span>
-          </div>
-          <p id="stat-critical" class="text-2xl font-bold text-[#ef4444]">0</p>
-        </div>
-        <div class="bg-[#152238] border border-[#1e3a5f] rounded-xl p-4">
-          <div class="flex items-center gap-2 mb-1">
-            <i data-lucide="check-circle" class="w-4 h-4 text-[#22c55e]"></i>
-            <span class="text-sm text-[#8ba8a0]">Normal</span>
-          </div>
-          <p id="stat-normal" class="text-2xl font-bold text-[#22c55e]">0</p>
-        </div>
-      </div>
-
-      <!-- Sensor List -->
-      <div id="sensor-list" class="flex flex-col gap-3 flex-1 overflow-auto"></div>
-      <div id="empty-state" class="flex-1 flex flex-col items-center justify-center text-[#8ba8a0] py-12 hidden">
-        <i data-lucide="inbox" class="w-12 h-12 mb-3 opacity-50"></i>
-        <p>Nenhum sensor cadastrado</p>
-        <p class="text-sm">Clique em "Novo Sensor" para começar</p>
-      </div>
-    </div>
-
-    <!-- Modals (mantidos iguais) -->
-    <!-- ... (modal-sensor e modal-delete permanecem iguais) ... -->
-  </div>
-
-  <script src="main.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
