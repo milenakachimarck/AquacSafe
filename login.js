@@ -45,6 +45,7 @@ function applyConfig(config) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // @ts-ignore
     lucide.createIcons();
     
     // Inicializa Element SDK
@@ -64,4 +65,28 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         });
     }
+});
+
+document.getElementById("formCadastro").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const nome = document.getElementById("cad-nome").value;
+    const login = document.getElementById("cad-login").value;
+    const senha = document.getElementById("cad-senha").value;
+    const isAdmin = document.getElementById("isAdmin").checked;
+    const adminSenha = document.getElementById("admin-senha").value;
+
+    const usuario = {
+        nome,
+        login,
+        senha,
+        isAdmin,
+        adminSenha
+    };
+
+    localStorage.setItem("usuarioAcquaSafe", JSON.stringify(usuario));
+
+    alert("Cadastro realizado com sucesso!");
+
+    window.location.href = "index.html";
 });
