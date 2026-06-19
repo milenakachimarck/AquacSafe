@@ -1,109 +1,132 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-if (window.lucide) {
+
+// Inicializa os ícones Lucide
+if (typeof window.lucide !== "undefined") {
     window.lucide.createIcons();
 }
 
-  
-{
-    const formCadastro = document.getElementById("formCadastro");
-}
+// ==========================
+// CADASTRO
+// ==========================
+const formCadastro = document.getElementById("formCadastro");
 
 if (formCadastro) {
 
     const isAdmin = document.getElementById("isAdmin");
     const adminGroup = document.getElementById("adminPasswordGroup");
 
-    if (isAdmin adminGroup) {
-        isAdmin.addEventListener("change", () => {
-            adminGroup.classList.toggle("hidden", !isAdmin.);
+    if (isAdmin && adminGroup) {
+        isAdmin.addEventListener("change", function () {
+            if (isAdmin.checked) {
+                adminGroup.classList.remove("hidden");
+            } else {
+                adminGroup.classList.add("hidden");
+            }
         });
     }
 
-    formCadastro.addEventListener("submit", (e) => {
+    formCadastro.addEventListener("submit", function (e) {
+
         e.preventDefault();
 
         const usuario = {
-    nome: document.getElementById("cad-nome").value,
-    login: document.getElementById("cad-login").value,
-    senha: document.getElementById("cad-senha").value,
-    admin: document.getElementById("isAdmin").checked,
-    adminSenha: document.getElementById("admin-senha").value
-};
-     
+            nome: document.getElementById("cad-nome").value,
+            login: document.getElementById("cad-login").value,
+            senha: document.getElementById("cad-senha").value,
+            admin: document.getElementById("isAdmin").checked,
+            adminSenha: document.getElementById("admin-senha").value
+        };
+
         localStorage.setItem(
             "usuarioAcquaSafe",
             JSON.stringify(usuario)
         );
 
         alert("Cadastro realizado com sucesso!");
+
         window.location.href = "login.html";
     });
 }
 
+
 });
 
-function handleLogin(event) {
+// ==========================
+// LOGIN PRINCIPAL
+// ==========================
+function handleLogin(event) 
 
 
 event.preventDefault();
 
-const login = document.getElementById("login-usuario");
-const senha = document.getElementById("login-senha");
+const login = document.getElementById("login-usuario").value;
+const senha = document.getElementById("login-senha").value;
 
 const usuario = JSON.parse(
-    localStorage.getItem(" usuarioAcquaSafe.")
+    localStorage.getItem("usuarioAcquaSafe")
 );
 
 if (!usuario) {
-    alert(" Nenhum usuário cadastrado.");
+    alert("Nenhum usuário cadastrado.");
     return;
 }
 
 if (
-  if (
     usuario.login === login &&
     usuario.senha === senha
-) 
 ) {
 
-    document.getElementById("btn-text").textContent 
-        "✓ Acesso concedido";
+    const btn = document.getElementById("btn-text");
 
-    setTimeout(() => {
+    if (btn) {
+        btn.textContent = "✓ Acesso concedido";
+    }
+
+    setTimeout(function () {
         window.location.href = "portal.html";
     }, 800);
 
 } else {
+
     alert("Login ou senha incorretos.");
-}
 
 }
 
-function handleAdminLogin(event) {
+
+
+// ==========================
+// LOGIN ADMIN
+// ==========================
+function handleAdminLogin(event) 
+
 
 event.preventDefault();
 
-const login = document.getElementById("admin-login");
-const senhaAdmin = document.getElementById("admin-password");
+const login = document.getElementById("admin-login").value;
+const senhaAdmin = document.getElementById("admin-password").value;
 
 const usuario = JSON.parse(
-    localStorage.getItem("usuarioAcquaSafe");
+    localStorage.getItem("usuarioAcquaSafe")
 );
 
-if ( 
-    if (
-    usuario.admin &&
+if (!usuario) {
+    alert("Nenhum administrador cadastrado.");
+    return;
+}
+
+if (
+    usuario.admin === true &&
     usuario.login === login &&
     usuario.adminSenha === senhaAdmin
-) 
 ) {
+
+    alert("Administrador autenticado!");
 
     window.location.href = "admin.html";
 
 } else {
 
-    alert ("Credenciais administrativas inválidas.");
-}
+    alert("Credenciais administrativas inválidas.");
 
 }
