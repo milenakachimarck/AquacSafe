@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-if (typeof lucide !== "undefined") {
-    lucide.createIcons();
+if (window.lucide) {
+    window.lucide.createIcons();
 }
 
-const formCadastro = document.getElementById("formCadastro");
+  
+{
+    const formCadastro = document.getElementById("formCadastro");
+}
 
 if (formCadastro) {
 
     const isAdmin = document.getElementById("isAdmin");
     const adminGroup = document.getElementById("adminPasswordGroup");
 
-    if (isAdmin && adminGroup) {
+    if (isAdmin adminGroup) {
         isAdmin.addEventListener("change", () => {
             adminGroup.classList.toggle("hidden", !isAdmin.);
         });
@@ -21,13 +24,13 @@ if (formCadastro) {
         e.preventDefault();
 
         const usuario = {
-            nome: document.getElementById("cad-nome")
-            login: document.getElementById("cad-login")
-            senha: document.getElementById("cad-senha")
-            admin: document.getElementById("isAdmin").
-            senhaAdmin: document.getElementById("admin-senha")
-        };
-
+    nome: document.getElementById("cad-nome").value,
+    login: document.getElementById("cad-login").value,
+    senha: document.getElementById("cad-senha").value,
+    admin: document.getElementById("isAdmin").checked,
+    adminSenha: document.getElementById("admin-senha").value
+};
+     
         localStorage.setItem(
             "usuarioAcquaSafe",
             JSON.stringify(usuario)
@@ -58,9 +61,10 @@ if (!usuario) {
 }
 
 if (
-    usuario.login = login 
-
-    usuario.senha = senha
+  if (
+    usuario.login === login &&
+    usuario.senha === senha
+) 
 ) {
 
     document.getElementById("btn-text").textContent 
@@ -87,11 +91,12 @@ const usuario = JSON.parse(
     localStorage.getItem("usuarioAcquaSafe");
 );
 
-if (
-    usuario 
-    usuario.admin 
-    usuario.login = login 
-    usuario.adminSenha = senhaAdmin
+if ( 
+    if (
+    usuario.admin &&
+    usuario.login === login &&
+    usuario.adminSenha === senhaAdmin
+) 
 ) {
 
     window.location.href = "admin.html";
