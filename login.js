@@ -53,9 +53,7 @@ if (typeof window.lucide !== "undefined") {
     window.lucide.createIcons();
 }
 
-// ==========================
 // CADASTRO
-// ==========================
 const formCadastro = document.getElementById("formCadastro");
 
 if (formCadastro) {
