@@ -27,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loginAdmin() {
 
+    // @ts-ignore
     const usuario = document.getElementById("usuario").value.trim();
+    // @ts-ignore
     const senha = document.getElementById("senha").value.trim();
 
     if (usuario === "admin" && senha === "1234") {
@@ -93,6 +95,7 @@ function adicionarDoenca() {
 
     if (!campo) return;
 
+    // @ts-ignore
     const valor = campo.value.trim();
 
     if (valor === "") {
@@ -102,6 +105,7 @@ function adicionarDoenca() {
 
     doencas.push(valor);
 
+    // @ts-ignore
     campo.value = "";
 
     renderDoencas();
@@ -186,9 +190,11 @@ function bloquearCliente(nome) {
 function criarContaAdmin(){
 
     const usuario =
+        // @ts-ignore
         document.getElementById("usuario").value.trim();
 
     const senha =
+        // @ts-ignore
         document.getElementById("senha").value.trim();
 
     if(usuario === "" || senha === ""){
@@ -206,9 +212,11 @@ function criarContaAdmin(){
 function loginAdmin(){
 
     const usuario =
+        // @ts-ignore
         document.getElementById("usuario").value.trim();
 
     const senha =
+        // @ts-ignore
         document.getElementById("senha").value.trim();
 
     const usuarioSalvo =
@@ -229,3 +237,40 @@ function loginAdmin(){
         alert("Usuário ou senha inválidos.");
     }
 }
+
+function loginAdmin(e){
+    e.preventDefault();
+
+    // @ts-ignore
+    const login = document.getElementById("admin-login").value;
+    // @ts-ignore
+    const senha = document.getElementById("admin-password").value;
+
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioAcquaSafe")
+    );
+
+    if(
+        usuario &&
+        usuario.isAdmin &&
+        usuario.login === login &&
+        usuario.adminSenha === senha
+    ){
+        alert("Administrador autenticado!");
+        window.location.href = "painel-admin.html";
+    }else{
+        alert("Credenciais de administrador inválidas!");
+    }
+}
+
+const isAdmin = document.getElementById("isAdmin");
+const adminGroup = document.getElementById("adminPasswordGroup");
+
+isAdmin.addEventListener("change", () => {
+    // @ts-ignore
+    if(isAdmin.checked){
+        adminGroup.classList.remove("hidden");
+    }else{
+        adminGroup.classList.add("hidden");
+    }
+});

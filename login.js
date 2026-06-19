@@ -2,6 +2,10 @@ function handleLogin(e) {
     e.preventDefault();
     
     const btn = document.getElementById('btn-text');
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     const originalText = btn.textContent;
     
     btn.textContent = 'Acessando...';
@@ -16,7 +20,7 @@ function handleLogin(e) {
 }
 
 // Element SDK Configuration
-const defaultConfig = {
+const Config = {
     page_title: 'Bem-vindo ao AcquaSafe',
     page_subtitle: 'Monitoramento de qualidade de água em tempo real',
     login_button_text: 'Acessar Painel',
@@ -44,49 +48,34 @@ function applyConfig(config) {
     document.body.style.fontFamily = `${font}, sans-serif`;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // @ts-ignore
-    lucide.createIcons();
-    
-    // Inicializa Element SDK
-    if (window.elementSdk) {
-        window.elementSdk.init({
-            defaultConfig,
-            onConfigChange: (config) => applyConfig(config),
-            mapToCapabilities: (config) => ({
-                recolorables: [
-                    { get: () => config.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }},
-                    { get: () => config.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }}
-                ],
-                fontEditable: {
-                    get: () => config.font_family,
-                    set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-                }
-            })
-        });
-    }
-});
-
-document.getElementById("formCadastro").addEventListener("submit", function(e){
+function handleLogin(e){
     e.preventDefault();
 
-    const nome = document.getElementById("cad-nome").value;
-    const login = document.getElementById("cad-login").value;
-    const senha = document.getElementById("cad-senha").value;
-    const isAdmin = document.getElementById("isAdmin").checked;
-    const adminSenha = document.getElementById("admin-senha").value;
+    // @ts-ignore
+    const login = document.getElementById("login").value.trim();
+    // @ts-ignore
+    const senha = document.getElementById("senha").value.trim();
 
-    const usuario = {
-        nome,
-        login,
-        senha,
-        isAdmin,
-        adminSenha
-    };
+    const usuario = JSON.parse(
+        localStorage.getItem("usuarioAcquaSafe")
+    );
 
-    localStorage.setItem("usuarioAcquaSafe", JSON.stringify(usuario));
-
-    alert("Cadastro realizado com sucesso!");
-
-    window.location.href = "index.html";
-});
+    if(
+        usuario 
+    
+        // @ts-ignore
+        usuario.login = login 
+        usuario.senha = senha
+    ) 
+    {
+        alert("Login realizado!");
+        window.location.href = "portal.html";
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    } else 
+        { 
+        alert("Login ou senha incorretos!");
+    }
+}
