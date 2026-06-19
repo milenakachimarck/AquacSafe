@@ -1,51 +1,31 @@
-{   document.addEventListener("DOMContentLoaded", () => 
- }
-   
-// ==========================
-// ÍCONES
+document.addEventListener("DOMContentLoaded", () => {
 
-{
-if (typeof lucide !== "undefined") 
+if (typeof lucide !== "undefined") {
     lucide.createIcons();
 }
 
-// ==========================
- CADASTRO
-
-{
 const formCadastro = document.getElementById("formCadastro");
 
-if (formCadastro) 
+if (formCadastro) {
 
     const isAdmin = document.getElementById("isAdmin");
     const adminGroup = document.getElementById("adminPasswordGroup");
 
     if (isAdmin && adminGroup) {
         isAdmin.addEventListener("change", () => {
-            adminGroup.classList.toggle("hidden", !isAdmin.checked);
+            adminGroup.classList.toggle("hidden", !isAdmin.);
         });
     }
 
     formCadastro.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const nome = document.getElementById("cad-nome").value;
-        const login = document.getElementById("cad-login").value;
-        const senha = document.getElementById("cad-senha").value;
-        const admin = document.getElementById("isAdmin").checked;
-        const adminSenha = document.getElementById("admin-senha").value;
-
-        if (admin && adminSenha.trim() === "") {
-            alert("Digite uma senha administrativa.");
-            return;
-        }
-
         const usuario = {
-            nome,
-            login,
-            senha,
-            admin,
-            adminSenha
+            nome: document.getElementById("cad-nome")
+            login: document.getElementById("cad-login")
+            senha: document.getElementById("cad-senha")
+            admin: document.getElementById("isAdmin").
+            senhaAdmin: document.getElementById("admin-senha")
         };
 
         localStorage.setItem(
@@ -53,90 +33,72 @@ if (formCadastro)
             JSON.stringify(usuario)
         );
 
-        alert("Cadastro realizado com sucesso!;
-
+        alert("Cadastro realizado com sucesso!");
         window.location.href = "login.html";
-    }
+    });
+}
 
 });
 
-// ==========================
-// LOGIN NORMAL
-// ==========================
 function handleLogin(event) {
 
-```
+
 event.preventDefault();
 
-const login = document.getElementById("login-usuario").value;
-const senha = document.getElementById("login-senha").value;
+const login = document.getElementById("login-usuario");
+const senha = document.getElementById("login-senha");
 
 const usuario = JSON.parse(
-    localStorage.getItem("usuarioAcquaSafe")
+    localStorage.getItem(" usuarioAcquaSafe.")
 );
 
 if (!usuario) {
-    alert("Nenhum usuário cadastrado.");
+    alert(" Nenhum usuário cadastrado.");
     return;
 }
 
 if (
-    usuario.login === login &&
-    usuario.senha === senha
+    usuario.login = login 
+
+    usuario.senha = senha
 ) {
 
-    const btn = document.getElementById("btn-text");
-
-    btn.textContent = "✓ Acesso concedido";
+    document.getElementById("btn-text").textContent 
+        "✓ Acesso concedido";
 
     setTimeout(() => {
         window.location.href = "portal.html";
     }, 800);
 
 } else {
-
     alert("Login ou senha incorretos.");
-
 }
-```
 
 }
 
-// ==========================
-// LOGIN ADMIN
-// ==========================
 function handleAdminLogin(event) {
 
-```
 event.preventDefault();
 
-const login = document.getElementById("admin-login").value;
-const senhaAdmin = document.getElementById("admin-password").value;
+const login = document.getElementById("admin-login");
+const senhaAdmin = document.getElementById("admin-password");
 
 const usuario = JSON.parse(
-    localStorage.getItem("usuarioAcquaSafe")
+    localStorage.getItem("usuarioAcquaSafe");
 );
 
-if (!usuario) {
-    alert("Nenhum administrador cadastrado.");
-    return;
-}
-
 if (
-    usuario.admin &&
-    usuario.login === login &&
-    usuario.adminSenha === senhaAdmin
+    usuario 
+    usuario.admin 
+    usuario.login = login 
+    usuario.adminSenha = senhaAdmin
 ) {
 
-    alert("Administrador autenticado!");
-
-    window.location.href = "painel-admin.html";
+    window.location.href = "admin.html";
 
 } else {
 
-    alert("Credenciais administrativas inválidas.");
-
+    alert ("Credenciais administrativas inválidas.");
 }
-```
 
 }
