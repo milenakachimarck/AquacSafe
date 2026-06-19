@@ -1,67 +1,76 @@
-function handleLogin(e) {
-    e.preventDefault();
-    
-    const btn = document.getElementById('btn-text');
-    const originalText = btn.textContent;
-    
-    btn.textContent = 'Acessando...';
-    
-    setTimeout(() => {
-        btn.textContent = '✓ Acesso concedido';
-        // Simulação de sucesso
-        setTimeout(() => {
-            window.location.href = "portal.html"; // Redireciona para o painel
-        }, 800);
-    }, 1200);
-}
+// login.js - Lógica compartilhada de login e cadastro
 
-// Element SDK Configuration
-const defaultConfig = {
-    page_title: 'Bem-vindo ao AcquaSafe',
-    page_subtitle: 'Monitoramento de qualidade de água em tempo real',
-    login_button_text: 'Acessar Painel',
-    background_color: '#0a0f1a',
-    text_color: '#ffffff',
-    primary_action_color: '#22d3ee',
-    secondary_action_color: '#94a3b8',
-    font_family: 'DM Sans',
-    font_size: 16
-};
+document.addEventListener('DOMContentLoaded', function() {
 
-function applyConfig(config) {
-    const title = document.getElementById('page-title');
-    const subtitle = document.getElementById('page-subtitle');
-    const btnText = document.getElementById('btn-text');
+    // ==================== LÓGICA ESPECÍFICA DO CADASTRO ====================
+    const formCadastro = document.getElementById('formCadastro');
     
-    if (title) title.textContent = config.page_title || defaultConfig.page_title;
-    if (subtitle) subtitle.textContent = config.page_subtitle || defaultConfig.page_subtitle;
-    if (btnText) btnText.textContent = config.login_button_text || defaultConfig.login_button_text;
-    
-    document.body.style.backgroundColor = config.background_color || defaultConfig.background_color;
-    document.body.style.color = config.text_color || defaultConfig.text_color;
-    
-    const font = config.font_family || defaultConfig.font_family;
-    document.body.style.fontFamily = `${font}, sans-serif`;
-}
+    if (formCadastro) {
+        const isAdminCheckbox = document.getElementById('isAdmin');
+        const adminPasswordGroup = document.getElementById('adminPasswordGroup');
 
-document.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-    
-    // Inicializa Element SDK
-    if (window.elementSdk) {
-        window.elementSdk.init({
-            defaultConfig,
-            onConfigChange: (config) => applyConfig(config),
-            mapToCapabilities: (config) => ({
-                recolorables: [
-                    { get: () => config.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }},
-                    { get: () => config.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }}
-                ],
-                fontEditable: {
-                    get: () => config.font_family,
-                    set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+        // Mostrar/esconder campo de senha admin
+        isAdminCheckbox.addEventListener('change', function() {
+            adminPasswordGroup.classList.toggle('hidden', !this.checked);
+        });
+
+        // Validação de CPF
+        function validarCPF(cpf) {
+            cpf = cpf.replace(/[^\d]+/g, '');
+            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
+            
+            let soma = 0;
+            for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+            let resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+            if (resto !== parseInt(cpf.charAt(9))) return false;
+            
+            soma = 0;
+            for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+            resto = (soma * 10) % 11;
+            if (resto === 10 || resto === 11) resto = 0;
+            if (resto !== parseInt(cpf.charAt(10))) return false;
+            
+            return true;
+        }
+
+        // Submissão do formulário
+        formCadastro.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loginInput = document.getElementById('cad-login').value.trim();
+            const isAdmin = isAdminCheckbox.checked;
+            const adminSenha = document.getElementById('admin-senha').value.trim();
+
+            // Validação de CPF
+            if (loginInput.length === 11 || loginInput.length === 14) {
+                if (!validarCPF(loginInput)) {
+                    alert('❌ CPF inválido! Por favor, verifique o número digitado.');
+                    return;
                 }
-            })
+            }
+
+            // Validação de conta Admin
+            if (isAdmin) {
+                if (!adminSenha) {
+                    alert('❌ Para criar uma conta de Administrador, você deve informar a senha de confirmação.');
+                    return;
+                }
+                // Senha de administrador (alterar conforme necessário)
+                if (adminSenha !== "admin123") {
+                    alert('❌ Senha de Administrador incorreta!');
+                    return;
+                }
+            }
+
+            alert('✅ Cadastro realizado com sucesso!' + 
+                  (isAdmin ? '\n\n👑 Conta de Administrador criada com sucesso.' : ''));
+            
+            // Aqui você pode adicionar fetch para backend no futuro
+            // fetch('/api/cadastro', { method: 'POST', body: new FormData(formCadastro) });
         });
     }
+
+    // ==================== LÓGICA COMUM (pode adicionar mais aqui) ====================
+    console.log('✅ login.js carregado com sucesso');
 });
