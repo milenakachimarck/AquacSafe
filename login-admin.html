@@ -1,128 +1,79 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaSafe - Administração</title>
-
+    <title>AcquaSafe – Admin Login</title>
     <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="admin.css">
 </head>
+<body class="admin-bg">
 
-<body class="h-screen bg-[#0a0f1a] text-white">
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+</div>
 
-    <!-- Background -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-    </div>
+<div class="relative min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md">
 
-    <div class="relative min-h-screen flex items-center justify-center px-4">
-
-        <div class="w-full max-w-md">
-
-            <!-- Logo -->
-            <div class="text-center mb-8">
-
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <div
-                        class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
-
-                        <i data-lucide="shield" class="w-8 h-8 text-white"></i>
-
-                    </div>
-
-                    <span class="text-3xl font-bold gradient-text">
-                        AcquaSafe
-                    </span>
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center">
+                    <i data-lucide="shield" class="w-8 h-8 text-white"></i>
                 </div>
-
-                <h1 class="text-3xl font-bold">
-                    Painel Administrativo
-                </h1>
-
-                <p class="text-white/60 mt-2">
-                    Gerencie clientes, pagamentos e doenças
-                </p>
-
+                <span class="text-3xl font-bold gradient-text">AcquaSafe</span>
             </div>
+            <h1 class="text-3xl font-bold">Painel Administrativo</h1>
+            <p class="text-white/60 mt-2">Acesso restrito a administradores</p>
+        </div>
 
-            <!-- Card -->
-            <div class="glass-card glow-border rounded-2xl p-8">
-
-                <form onsubmit="event.preventDefault(); loginAdmin();">
-
-                    <div class="mb-4">
-
-                        <label class="block mb-2 text-sm">
-                            Usuário
-                        </label>
-
-                        <input
-                            type="text"
-                            id="usuario"
-                            class="input-field w-full px-4 py-3 rounded-lg"
-                            placeholder="Digite seu usuário">
-
-                    </div>
-
-                    <div class="mb-5">
-
-                        <label class="block mb-2 text-sm">
-                            Senha
-                        </label>
-
-                        <input
-                            type="password"
-                            id="senha"
-                            class="input-field w-full px-4 py-3 rounded-lg"
-                            placeholder="••••••••">
-
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="w-full btn-gradient py-3 rounded-lg font-semibold">
-
-                        Entrar
-
-
-                        
-            <!-- Informações -->
-            <div class="grid grid-cols-3 gap-3 mt-6">
-
-                <div class="glass-card rounded-xl p-4 text-center">
-                    <i data-lucide="users" class="w-6 h-6 mx-auto text-cyan-400 mb-2"></i>
-                    <p class="text-xs text-white/70">Clientes</p>
+        <!-- Card -->
+        <div class="glass-card glow-border rounded-2xl p-8">
+            <form onsubmit="event.preventDefault(); loginAdmin();" class="space-y-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium">Usuário (login)</label>
+                    <input type="text" id="usuario" class="input-field w-full px-4 py-3 rounded-lg"
+                           placeholder="Digite seu login" required>
                 </div>
-
-                <div class="glass-card rounded-xl p-4 text-center">
-                    <i data-lucide="shield-alert" class="w-6 h-6 mx-auto text-blue-400 mb-2"></i>
-                    <p class="text-xs text-white/70">Doenças</p>
+                <div>
+                    <label class="block mb-2 text-sm font-medium">Senha Administrativa</label>
+                    <input type="password" id="senha" class="input-field w-full px-4 py-3 rounded-lg"
+                           placeholder="••••••••" required>
                 </div>
+                <button type="submit" class="w-full btn-gradient py-3 rounded-lg font-semibold">
+                    Entrar no Painel
+                </button>
+            </form>
 
-                <div class="glass-card rounded-xl p-4 text-center">
-                    <i data-lucide="ban" class="w-6 h-6 mx-auto text-red-400 mb-2"></i>
-                    <p class="text-xs text-white/70">Bloqueios</p>
-                </div>
+            <p class="text-center text-white/50 text-sm mt-6">
+                <a href="index.html" class="hover:text-cyan-400 transition-colors">← Voltar ao login</a>
+            </p>
+        </div>
 
+        <!-- Info cards -->
+        <div class="grid grid-cols-3 gap-3 mt-6">
+            <div class="glass-card rounded-xl p-4 text-center">
+                <i data-lucide="users" class="w-6 h-6 mx-auto text-cyan-400 mb-2"></i>
+                <p class="text-xs text-white/70">Clientes</p>
             </div>
-
+            <div class="glass-card rounded-xl p-4 text-center">
+                <i data-lucide="shield-alert" class="w-6 h-6 mx-auto text-blue-400 mb-2"></i>
+                <p class="text-xs text-white/70">Doenças</p>
+            </div>
+            <div class="glass-card rounded-xl p-4 text-center">
+                <i data-lucide="ban" class="w-6 h-6 mx-auto text-red-400 mb-2"></i>
+                <p class="text-xs text-white/70">Bloqueios</p>
+            </div>
         </div>
 
     </div>
+</div>
 
-    <script>
-        lucide.createIcons();
-    </script>
-
-    <script src="admin.js"></script>
-
+<script src="login.js"></script>
+<script>lucide.createIcons();</script>
 </body>
-
 </html>
