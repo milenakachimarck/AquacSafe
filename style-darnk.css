@@ -1,52 +1,47 @@
-/* style-dark.css */
+/* style-dark.css – AcquaSafe – páginas internas */
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
-* {
-    font-family: 'DM Sans', sans-serif;
-    box-sizing: border-box;
-}
+* { font-family: 'DM Sans', sans-serif; box-sizing: border-box; }
 
-body {
-    background-color: #0a0f1a !important;
-    color: #e2e8f0 !important;
-    margin: 0;
-    min-height: 100vh;
-}
+body { background-color: #0a0f1a !important; color: #e2e8f0 !important; margin: 0; min-height: 100vh; }
 
-/* Navbar consistente com login */
 nav {
-    background: rgba(10, 15, 26, 0.97) !important;
+    background: rgba(10,15,26,0.97) !important;
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.08) !important;
 }
 
-/* Glass + Tabelas Dark */
 .glass-card, .bg-white {
     background: rgba(255,255,255,0.06) !important;
     border: 1px solid rgba(255,255,255,0.1) !important;
 }
 
-th {
-    background-color: rgba(15, 23, 42, 0.9) !important;
-    color: #67e8f9 !important;
-}
+th { background-color: rgba(15,23,42,0.9) !important; color: #67e8f9 !important; padding: 1.25rem 1.5rem; text-align: left; }
+td { border-top: 1px solid rgba(255,255,255,0.08) !important; }
+tr:hover { background-color: rgba(103,232,249,0.05) !important; }
 
-td {
-    border-top: 1px solid rgba(255,255,255,0.08) !important;
-}
-
-tr:hover {
-    background-color: rgba(103, 232, 249, 0.1) !important;
-}
-
-/* Inputs */
 input[type="text"] {
     background: rgba(255,255,255,0.05) !important;
     border: 1px solid rgba(255,255,255,0.15) !important;
     color: white !important;
 }
-
 input[type="text"]:focus {
     border-color: #22d3ee !important;
-    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.3) !important;
+    box-shadow: 0 0 0 3px rgba(34,211,238,0.25) !important;
+    outline: none;
+}
+
+select {
+    background: rgba(255,255,255,0.05) !important;
+    border: 1px solid rgba(255,255,255,0.15) !important;
+    color: white !important;
+}
+select option { background: #0f172a; }
+select:focus { border-color: #22d3ee !important; outline: none; }
+
+.gradient-text {
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
